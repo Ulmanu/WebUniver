@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "online-museum-8f89a": {
+      "hosting": {
+        "front-sp": [
+          "online-museum-8f89a"
+        ]
+      }
+    }
+  }
+}
