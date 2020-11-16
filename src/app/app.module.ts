@@ -13,7 +13,13 @@ import {environment} from '../environments/environment';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { RenmuseumComponent } from './renmuseum/renmuseum.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DefaultModule } from './layouts/default/default.module';
+//import { MuseumsComponent } from './modules/museums/museums.component';
+//import { HeaderComponent } from './shared/component/header/header.component';
+//import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
+//import { DefaultComponent } from './layouts/default/default.component';
+//import { DashboardComponent } from './modules/dashboard/dashboard.component';
 //import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
@@ -24,14 +30,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MenuComponent,
     RegisterComponent,
     NavbarComponent,
-    RenmuseumComponent,
+    RenmuseumComponent
+
+
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AppRoutingModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
+    DefaultModule
     // MDBBootstrapModule.forRoot()
    // MatButtonModule
   ],
