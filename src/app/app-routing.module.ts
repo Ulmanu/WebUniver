@@ -5,7 +5,7 @@ import { GaleryComponent } from './galery/galery.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { MuseumsComponent } from './modules/museums/museums.component';
-
+import { MusformComponent} from './musform/musform.component'
 const routes: Routes = [
   { path: '', component: GaleryComponent },
   { path: 'renmuseum', component: RenmuseumComponent },
@@ -22,7 +22,8 @@ const routes: Routes = [
         component:MuseumsComponent
       }
     ]
-  }
+  },
+  {path: 'musform', component: MusformComponent}
 ];
 
 @NgModule({

@@ -15,6 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { RenmuseumComponent } from './renmuseum/renmuseum.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MusformComponent } from './musform/musform.component';
+import {HttpClientModule} from '@angular/common/http';
+import {AgmCoreModule} from '@agm/core';
 //import { MuseumsComponent } from './modules/museums/museums.component';
 //import { HeaderComponent } from './shared/component/header/header.component';
 //import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
@@ -30,7 +34,8 @@ import { DefaultModule } from './layouts/default/default.module';
     MenuComponent,
     RegisterComponent,
     NavbarComponent,
-    RenmuseumComponent
+    RenmuseumComponent,
+    MusformComponent
 
 
   ],
@@ -40,7 +45,12 @@ import { DefaultModule } from './layouts/default/default.module';
     AngularFirestoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DefaultModule
+    DefaultModule,
+    NgbModule,
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey:''
+    })
     // MDBBootstrapModule.forRoot()
    // MatButtonModule
   ],

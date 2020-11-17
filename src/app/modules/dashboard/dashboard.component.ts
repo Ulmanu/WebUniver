@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
-
+import {AgmCoreModule} from '@agm/core';
 export interface PeriodicElement {
   name: string;
   position: number;

@@ -17,6 +17,7 @@ import { PieComponent } from './widgets/pie/pie.component';
 import { AreaComponent } from './widgets/area/area.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     RouterModule,
     HighchartsChartModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AgmCoreModule.forRoot({
+      apiKey:''
+    })
   ],
   exports:
   [
@@ -53,7 +57,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatMenuModule,
     CardComponent,
     PieComponent,
-    AreaComponent
+    AreaComponent,
+    AgmCoreModule
   ]
 })
 export class SharedModule { }
