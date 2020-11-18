@@ -1,4 +1,4 @@
-package com.museum.museumcrudapi;
+package com.museum.museumcrudapi.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

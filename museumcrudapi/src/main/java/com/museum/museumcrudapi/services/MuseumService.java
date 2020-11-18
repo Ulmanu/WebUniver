@@ -1,10 +1,11 @@
-package com.museum.museumcrudapi;
+package com.museum.museumcrudapi.services;
 
+import com.museum.museumcrudapi.models.Museum;
+import com.museum.museumcrudapi.repositories.MuseumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MuseumService {

@@ -1,5 +1,7 @@
-package com.museum.museumcrudapi;
+package com.museum.museumcrudapi.controllers;
 
+import com.museum.museumcrudapi.models.Museum;
+import com.museum.museumcrudapi.services.MuseumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
