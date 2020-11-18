@@ -25,6 +25,7 @@ import {AgmCoreModule} from '@agm/core';
 //import { DefaultComponent } from './layouts/default/default.component';
 //import { DashboardComponent } from './modules/dashboard/dashboard.component';
 //import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {AgmCoreModule} from '@agm/core';
     DefaultModule,
     NgbModule,
     HttpClientModule,
+    FormsModule,
     AgmCoreModule.forRoot({
       apiKey:''
     })

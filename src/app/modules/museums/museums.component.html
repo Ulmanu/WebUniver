@@ -1,6 +1,6 @@
 <div class="container">
   <div class="border">
-    <button class="btn btn-md btn-outline-primary">
+    <button class="btn btn-md btn-outline-primary" (click)="open(content)">
       <i class="fa fa-user"></i>New Museum</button>
   </div>
   <table class="table table-bordered table-striped">
@@ -10,8 +10,9 @@
         <th>Title</th>
         <th>Address</th>
         <th>Description</th>
-        <th>Coordinates</th>
         <th>Image</th>
+        <th>Coordinates</th>
+
 
         <th></th>
       </tr>
@@ -24,16 +25,13 @@
         <td style="width: 200px;"><span>{{museum.description}}</span></td>
 
         <td><span><img src="{{museum.image}}" alt=""></span></td>
-<td>
-  <span>
-    <agm-map [latitude]="lat" [longitude]="lng" >
-      <agm-marker
-        [latitude]="lat"
-        [longitude]="lng"
-        ></agm-marker>
-    </agm-map>
-  </span>
-</td>
+        <td>
+          <span>
+            Latitude: {{museum.lat}}
+            <br>
+            Longitude: {{museum.lon}}
+          </span>
+        </td>
         <td>
           <button class="btn btn-sm btn-info">
             <i class="fa fa-search"></i>Details</button>
@@ -46,3 +44,63 @@
     </tbody>
   </table>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New Museum</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <div class="input-group">
+          <input id="title" name="title" class="form-control" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <div class="input-group">
+          <input id="address" name="address" class="form-control" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <textarea name="description" id="description" cols="30" rows="10" id="title" class="form-control" ngModel></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="input-group">
+          <input type="file" name="image" id="image" class="form-control" accept="image/*" (change)="onFileSelected($event)" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lat">Latitude</label>
+        <div class="input-group">
+          <input id="lat" type="number" name="lat" class="form-control" placeholder="32.12324" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lon">Longitude</label>
+        <div class="input-group">
+          <input id="lon" type="number" name="lon" class="form-control" placeholder="32.12324" ngModel>
+        </div>
+      </div>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>

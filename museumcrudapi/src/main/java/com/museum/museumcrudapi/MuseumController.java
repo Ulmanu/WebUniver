@@ -10,7 +10,7 @@ public class MuseumController {
     @Autowired
     private MuseumService service;
 
-    @RequestMapping(value = "/addmuseum", method = RequestMethod.GET)
+    @PostMapping("/addmuseum")
     public Museum addMuseum(@RequestBody Museum museum) {
         return service.saveMuseum(museum);
     }

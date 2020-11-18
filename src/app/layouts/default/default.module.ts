@@ -12,6 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import {DashboardService} from 'src/app/modules/dashboard.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     DefaultComponent,
@@ -27,7 +29,8 @@ import {MatTableModule} from '@angular/material/table';
     FlexLayoutModule,
     MatCardModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ]
   ,
   providers: [
