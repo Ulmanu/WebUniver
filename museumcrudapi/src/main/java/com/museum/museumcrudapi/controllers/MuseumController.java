@@ -17,7 +17,7 @@ public class MuseumController {
         return service.saveMuseum(museum);
     }
 
-    @RequestMapping(value = "/addmuseums", method = RequestMethod.GET)
+  @PostMapping("/addmuseums")
     public List<Museum> addMuseums(@RequestBody List<Museum> museums) {
         return service.saveMuseums(museums);
     }
@@ -42,7 +42,7 @@ public class MuseumController {
         return service.updateMuseum(museum);
     }
 
-    @RequestMapping(value = "/deletemus/{id}", method = RequestMethod.GET)
+    @DeleteMapping("/delete/{id}")
     public String deleteMuseum(@PathVariable int id) {
         return service.deleteMuseum(id);
     }
