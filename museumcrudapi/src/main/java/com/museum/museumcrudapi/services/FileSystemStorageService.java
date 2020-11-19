@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class FileSystemStorageService implements StorageService {
 
     private final Path rootLocation;
-  private String location = "upload";
+  private String location = "../src/images/museums";
     @Autowired
     public FileSystemStorageService() {
         this.rootLocation = Paths.get(location);

@@ -80,12 +80,7 @@ export class MuseumsComponent implements OnInit {
       "Content-Type": "application/json",
       "Accept": "application/json"
   });
-    console.log(f.value.title);
-    console.log(f.value.address);
-    console.log(f.value.description);
-    console.log(f.value.image);
-    console.log(f.value.lat);
-    console.log(f.value.lon);
+
     const body = {title: f.value.title, address:f.value.address,description:f.value.description,
       image:'images/museums/'+this.museumFile.name,lat:f.value.lat,lon:f.value.lon};
       this.uploadFileService.uploadFiles(this.museumFile);

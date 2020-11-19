@@ -14,7 +14,17 @@ table .btn{
   margin: 2px;
 
 }
+td{
+  text-overflow:  ellipsis;   word-break: break-all;
+}
 table
+{
+  width: 100%;
+}
+.modal-body{
+  width: 100%;
+}
+.modal-header
 {
   width: 100%;
 }
