@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgForm} from '@angular/forms';
+import { UploadService } from '../upload.service';
 export class Museum {
   constructor(
     private id :number,
@@ -27,7 +28,8 @@ export class MuseumsComponent implements OnInit {
 
   constructor(
      private httpClient:HttpClient,
-     private modalService: NgbModal
+     private modalService: NgbModal,
+     private uploadFileService: UploadService
   ) { }
 
   museumFile:File;
@@ -69,6 +71,8 @@ export class MuseumsComponent implements OnInit {
   }
 
 
+
+
   onSubmit(f: NgForm) {
 
     const url = 'http://localhost:9191/addmuseum';
@@ -84,6 +88,7 @@ export class MuseumsComponent implements OnInit {
     console.log(f.value.lon);
     const body = {title: f.value.title, address:f.value.address,description:f.value.description,
       image:'images/museums/'+this.museumFile.name,lat:f.value.lat,lon:f.value.lon};
+      this.uploadFileService.uploadFiles(this.museumFile);
     const body1=JSON.stringify(body);
     console.log(body1);
     this.httpClient.post(url, body)
