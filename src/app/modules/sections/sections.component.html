@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="border">
+
+    <button class="btn btn-md btn-outline-primary" (click)="open(content)">
+      <i class="fa fa-user"></i>New Section
+    </button>
+
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>IDsect</th>
+      <th>Title</th>
+
+      <th>Description</th>
+      <th>Image</th>
+      <th>Type</th>
+      <th>Idmus</th>
+
+
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let section of sections">
+      <td><span>{{section.idsect}}</span></td>
+      <td><span>{{section.title}}</span></td>
+
+      <td style="width: 200px;"><span>{{section.description}}</span></td>
+
+      <td><span><img src="{{section.image}}" alt=""></span></td>
+      <td><span>{{section.type}}</span></td>
+      <td><span>{{section.idmus}}</span></td>
+      <td>
+        <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, section)">
+          <i class="fa fa-search"></i>Details
+        </button>
+        <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, section)">
+          <i class="fa fa-edit"></i>Edit
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, section)">
+          <i class="fa fa-remove"></i>Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -23,14 +23,12 @@ export class AreaComponent implements OnInit {
         type: 'area'
       },
       title: {
-        text: 'Random DATA'
+        text: 'DATA'
       },
-      subtitle: {
-        text: 'Demo'
-      },
+
       tooltip: {
         split: true,
-        valueSuffix: ' millions'
+        valueSuffix: ' units'
       },
       credits: {
         enabled: false

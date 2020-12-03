@@ -1,0 +1,43 @@
+.container{
+  margin-top:5%;
+}
+.border{
+  padding: 10px;
+}
+.btn{
+  margin-right: 10px;
+}
+.fa {
+  margin-right: 10px;
+}
+table .btn{
+  margin: 2px;
+
+}
+td{
+  text-overflow:  ellipsis;   word-break: break-all;
+}
+table
+{
+  width: 100%;
+}
+.modal-body{
+  width: 100%;
+}
+.modal-header
+{
+  width: 100%;
+}
+img {
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+  width: 150px;
+  height: 150px;
+
+}
+agm-map {
+  height: 300px;
+  width:200px;
+}

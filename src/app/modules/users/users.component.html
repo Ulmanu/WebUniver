@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="border">
+
+    <button class="btn btn-md btn-outline-primary" (click)="open(content)">
+      <i class="fa fa-user"></i>New User
+    </button>
+
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>IDUser</th>
+      <th>Name</th>
+
+
+      <th>Image</th>
+
+      <th>Password</th>
+      <th>Email</th>
+      <th>Role</th>
+
+
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let exe of list">
+      <td><span>{{exe.iduser}}</span></td>
+      <td><span>{{exe.name}}</span></td>
+
+
+
+      <td><span><img src="{{exe.image}}" alt=""></span></td>
+
+      <td><span>{{exe.password}}</span></td>
+      <td><span>{{exe.email}}</span></td>
+      <td><span>{{exe.role}}</span></td>
+      <td>
+        <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
+          <i class="fa fa-search"></i>Details
+        </button>
+        <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, exe)">
+          <i class="fa fa-edit"></i>Edit
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, exe)">
+          <i class="fa fa-remove"></i>Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

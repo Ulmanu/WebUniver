@@ -37,17 +37,17 @@ CREATE TABLE `section` (
   `description` text,
   `image` mediumtext,
   `type` varchar(50),
-  `titlemus` varchar(100),
+  `idmus` bigint,
   PRIMARY KEY (`idsect`),
-  foreign key (`titlemus`) references `museum`(`title`) ON UPDATE CASCADE ON delete CASCADE,
+  foreign key (`idmus`) references `museum`(`id`) ON UPDATE CASCADE ON delete CASCADE,
   KEY `index_title` (`title`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into `section` (title, description, image,type,titlemus) values
-('Sectia 3','','images/museums/istorie.jpg','Rennaisance','Muzeul de istorie'),
-('Sectia 5','','images/museums/istorie.jpg','Barocco','Muzeul de Arta');
+insert into `section` (title, description, image,type,idmus) values
+('Sectia 3','','images/museums/istorie.jpg','Rennaisance',1),
+('Sectia 5','','images/museums/istorie.jpg','Barocco',2);
 select * from `section`;
-select museum.title from museum inner join section on museum.title=section.titlemus where section.type like 'Barocco';
+select museum.title from museum inner join section on museum.id=section.idmus where section.type like 'Barocco';
 
 --
 -- Table structure for table `gallery`
@@ -80,16 +80,16 @@ CREATE TABLE `exponat` (
   `title` varchar(100) NOT NULL unique,
   `description` text,
   `image` mediumtext,
-  `titlegal` varchar(100),
+  `idgal` bigint,
   price float,
   PRIMARY KEY (`idexp`),
-  foreign key (`titlegal`) references `gallery`(`title`) ON UPDATE CASCADE ON delete CASCADE,
+  foreign key (`idgal`) references `gallery`(`idgal`) ON UPDATE CASCADE ON delete CASCADE,
   KEY `index_title` (`title`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into `exponat` (title, description, image,titlegal,price) values
-('Picture1','','images/museums/istorie.jpg','Room4',2000),
-('Picture2','','images/museums/istorie.jpg','Room4',3500);
+insert into `exponat` (title, description, image,idgal,price) values
+('Picture1','','images/museums/istorie.jpg',1,2000),
+('Picture2','','images/museums/istorie.jpg',1,3500);
 select * from `exponat`;
 
 --
@@ -102,13 +102,14 @@ CREATE TABLE `user` (
   `name` varchar(100) NOT NULL,
   `image` mediumtext,
   password varchar(100),
-  email varchar(100),
+  email varchar(100) unique not null,
+  role varchar(100),
   PRIMARY KEY (`iduser`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into `user` (name, password, email,image) values
-('Victor Ungureanu','fdfd','a@dfsd.com','images/museums/istorie.jpg'),
-('Victor Ungureanu','fdfd','a@dfsd.com','images/museums/istorie.jpg');
+insert into `user` (name, password, email,image,role) values
+('Victor Ungureanu','fdfd','a@dfsd.com','images/museums/istorie.jpg','admin'),
+('Victor Ungureanu','fdfd','ad@dfsd.com','images/museums/istorie.jpg','');
 select * from `user`;
 
 
@@ -193,10 +194,11 @@ CREATE TABLE `turtype` (
   `idturtype` bigint NOT NULL AUTO_INCREMENT,
    nametur varchar(100),
    description text,
+   price float,
    PRIMARY KEY (`idturtype`)
  
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+insert into turtype (idturtype, nametur, description,price) values(1,'scsdcsd','jdsfknsjdnf',2300);
 --
 -- Table structure for table `tur`
 --
@@ -217,7 +219,7 @@ CREATE TABLE `tur` (
  
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
+insert into tur values (1,1,1,1,'2008-11-11',1);
 --
 -- Table structure for table `purchase`
 --

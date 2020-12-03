@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
-import { UploadService } from '../upload.service';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgForm} from '@angular/forms';
+import {UploadService} from '../upload.service';
+
 export class Museum {
   title: string;
   address: string;
@@ -40,13 +41,16 @@ export class MuseumsComponent implements OnInit {
     private httpClient: HttpClient,
     private modalService: NgbModal,
     private uploadFileService: UploadService
-  ) { }
+  ) {
+  }
 
   museumFile: File;
+
   ngOnInit(): void {
     this.getMuseums();
 
   }
+
   getMuseums() {
     this.httpClient.get<any>('http://localhost:9191/museums').subscribe(
       response => {
@@ -55,8 +59,9 @@ export class MuseumsComponent implements OnInit {
       }
     );
   }
+
   open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -79,6 +84,7 @@ export class MuseumsComponent implements OnInit {
 
 
   }
+
   onFileSelected(event) {
     this.museumFile = event.target.files[0];
 
@@ -89,8 +95,8 @@ export class MuseumsComponent implements OnInit {
 
     const url = 'http://localhost:9191/addmuseum';
     var headers = new Headers({
-      "Content-Type": "application/json",
-      "Accept": "application/json"
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     });
 
     const body = {
@@ -123,6 +129,7 @@ export class MuseumsComponent implements OnInit {
   }
 
   temp: Museum;
+
   openEdit(targetModal, museum: Museum) {
     this.modalService.open(targetModal, {
       centered: true,
@@ -146,8 +153,8 @@ export class MuseumsComponent implements OnInit {
 
     const url1 = 'http://localhost:9191/update';
     var headers = new Headers({
-      "Content-Type": "application/json",
-      "Accept": "application/json"
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     });
 
 
@@ -176,6 +183,7 @@ export class MuseumsComponent implements OnInit {
 
 
   deleteId: string;
+
   openDelete(targetModal, museum: Museum) {
     this.deleteId = museum.id;
     this.modalService.open(targetModal, {
