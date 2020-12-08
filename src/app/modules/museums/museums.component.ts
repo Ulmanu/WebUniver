@@ -4,23 +4,17 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgForm} from '@angular/forms';
 import {UploadService} from '../upload.service';
 
-export class Museum {
-  title: string;
-  address: string;
-  description: string;
-  image: string;
-  lat: string;
-  lon: string;
-  id: string;
+export class Object {
+
 
   constructor(
-    id: number,
-    title: string,
-    address: string,
-    description: string,
-    image: string,
-    lat: number,
-    lon: number
+   public id: number,
+   public title: string,
+   public address: string,
+   public description: string,
+   public image: string,
+   public lat: number,
+   public lon: number
   ) {
   }
 }
@@ -33,7 +27,7 @@ export class Museum {
 })
 export class MuseumsComponent implements OnInit {
 
-  museums: Museum[];
+  exes: Object[];
   closeResult: string;
 
 
@@ -44,18 +38,18 @@ export class MuseumsComponent implements OnInit {
   ) {
   }
 
-  museumFile: File;
+  ObjectFile: File;
 
   ngOnInit(): void {
-    this.getMuseums();
+    this.getObjects();
 
   }
 
-  getMuseums() {
+  getObjects() {
     this.httpClient.get<any>('http://localhost:9191/museums').subscribe(
       response => {
         console.log(response);
-        this.museums = response;
+        this.exes = response;
       }
     );
   }
@@ -79,14 +73,14 @@ export class MuseumsComponent implements OnInit {
   }
 
   onFileSelected1(event) {
-    this.museumFile = event.target.files[0];
-    document.getElementById('image21').innerHTML = this.museumFile.name;
+    this.ObjectFile = event.target.files[0];
+    document.getElementById('image21').innerHTML = this.ObjectFile.name;
 
 
   }
 
   onFileSelected(event) {
-    this.museumFile = event.target.files[0];
+    this.ObjectFile = event.target.files[0];
 
 
   }
@@ -101,9 +95,9 @@ export class MuseumsComponent implements OnInit {
 
     const body = {
       title: f.value.title, address: f.value.address, description: f.value.description,
-      image: 'images/museums/' + this.museumFile.name, lat: f.value.lat, lon: f.value.lon
+      image: 'images/museums/' + this.ObjectFile.name, lat: f.value.lat, lon: f.value.lon
     };
-    this.uploadFileService.uploadFiles(this.museumFile);
+    this.uploadFileService.uploadFiles(this.ObjectFile);
     const body1 = JSON.stringify(body);
     console.log(body1);
     this.httpClient.post(url, body)
@@ -113,38 +107,38 @@ export class MuseumsComponent implements OnInit {
     this.modalService.dismissAll(); //dismiss the modal
   }
 
-  openDetails(targetModal, museum: Museum) {
+  openDetails(targetModal, Object: Object) {
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
       size: 'lg'
     });
 
-    document.getElementById('title1').setAttribute('value', museum.title);
-    document.getElementById('address1').setAttribute('value', museum.address);
-    document.getElementById('description1').innerHTML = museum.description;
-    document.getElementById('image1').setAttribute('value', museum.image);
-    document.getElementById('lat1').setAttribute('value', museum.lat);
-    document.getElementById('lon1').setAttribute('value', museum.lon);
+    document.getElementById('title1').setAttribute('value', Object.title);
+    document.getElementById('address1').setAttribute('value', Object.address);
+    document.getElementById('description1').innerHTML = Object.description;
+    document.getElementById('image1').setAttribute('value', Object.image);
+    document.getElementById('lat1').setAttribute('value', Object.lat.toString());
+    document.getElementById('lon1').setAttribute('value', Object.lon.toString());
   }
 
-  temp: Museum;
+  temp: Object;
 
-  openEdit(targetModal, museum: Museum) {
+  openEdit(targetModal, Object: Object) {
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
       size: 'lg'
     });
-    this.temp = museum;
-    document.getElementById('id').setAttribute('placeholder', museum.id);
-    document.getElementById('title').setAttribute('placeholder', museum.title);
-    document.getElementById('address').setAttribute('placeholder', museum.address);
-    document.getElementById('description').setAttribute('placeholder', museum.description);
+    this.temp = Object;
+    document.getElementById('id').setAttribute('placeholder', Object.id.toString());
+    document.getElementById('title').setAttribute('placeholder', Object.title);
+    document.getElementById('address').setAttribute('placeholder', Object.address);
+    document.getElementById('description').setAttribute('placeholder', Object.description);
 
-    document.getElementById('image21').innerHTML = museum.image;
-    document.getElementById('lat').setAttribute('placeholder', museum.lat);
-    document.getElementById('lon').setAttribute('placeholder', museum.lon);
+    document.getElementById('image21').innerHTML = Object.image;
+    document.getElementById('lat').setAttribute('placeholder', Object.lat.toString());
+    document.getElementById('lon').setAttribute('placeholder', Object.lon.toString());
 
   }
 
@@ -158,13 +152,13 @@ export class MuseumsComponent implements OnInit {
     });
 
 
-    document.getElementById('image21').innerHTML = this.museumFile.name;
+    document.getElementById('image21').innerHTML = this.ObjectFile.name;
     const body = {
       id: this.temp.id,
       title: f.value.title,
       address: f.value.address,
       description: f.value.description,
-      image: 'images/museums/' + document.getElementById('image21').innerHTML.replace('images/museums/', ''),
+      image: 'images/museums/' + document.getElementById('image21').innerHTML.replace('images/Objects/', ''),
       lat: f.value.lat,
       lon: f.value.lon
     };
@@ -173,7 +167,7 @@ export class MuseumsComponent implements OnInit {
 
     this.httpClient.put(url1, body)
       .subscribe((result) => {
-        this.uploadFileService.uploadFiles(this.museumFile);
+        this.uploadFileService.uploadFiles(this.ObjectFile);
         this.ngOnInit(); //reload the table
 
       });
@@ -184,8 +178,8 @@ export class MuseumsComponent implements OnInit {
 
   deleteId: string;
 
-  openDelete(targetModal, museum: Museum) {
-    this.deleteId = museum.id;
+  openDelete(targetModal, Object: Object) {
+    this.deleteId = Object.id.toString();
     this.modalService.open(targetModal, {
       backdrop: 'static',
       size: 'lg'

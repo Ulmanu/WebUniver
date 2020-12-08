@@ -21,9 +21,7 @@ public class Section {
   private String image;
   private String type;
   private int idmus;
-  @OneToMany(targetEntity = Gallery.class,cascade = CascadeType.ALL)
-  @JoinColumn(name = "idsect",referencedColumnName = "idsect")
-  private List<Section> galleries;
+
 
 
   public int getIdsect() {

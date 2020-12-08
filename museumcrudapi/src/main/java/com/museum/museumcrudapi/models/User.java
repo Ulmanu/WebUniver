@@ -49,16 +49,16 @@ public class User {
   }
 
   public int getIduser() {
-    return iduser;
+    return id;
   }
 
   public void setIduser(int iduser) {
-    this.iduser = iduser;
+    this.id = iduser;
   }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int iduser;
+  private int id;
   private String name;
   private String image;
   private String password;

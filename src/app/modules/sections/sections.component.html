@@ -1,49 +1,252 @@
 <div class="container">
   <div class="border">
-
     <button class="btn btn-md btn-outline-primary" (click)="open(content)">
-      <i class="fa fa-user"></i>New Section
+      <i class="fa fa-user"></i>New exe
     </button>
-
   </div>
   <table class="table table-bordered table-striped">
     <thead>
-    <tr>
-      <th>IDsect</th>
-      <th>Title</th>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
 
-      <th>Description</th>
-      <th>Image</th>
-      <th>Type</th>
-      <th>Idmus</th>
+        <th>Description</th>
+        <th>Image</th>
+     <th> Type</th>
+     <th>Idmus</th>
 
 
-      <th></th>
-    </tr>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let section of sections">
-      <td><span>{{section.idsect}}</span></td>
-      <td><span>{{section.title}}</span></td>
+      <tr *ngFor="let exe of exes">
+        <td><span>{{exe.idsect}}</span></td>
+        <td><span>{{exe.title}}</span></td>
 
-      <td style="width: 200px;"><span>{{section.description}}</span></td>
+        <td style="width: 200px;"><span>{{exe.description}}</span></td>
 
-      <td><span><img src="{{section.image}}" alt=""></span></td>
-      <td><span>{{section.type}}</span></td>
-      <td><span>{{section.idmus}}</span></td>
-      <td>
-        <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, section)">
-          <i class="fa fa-search"></i>Details
-        </button>
-        <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, section)">
-          <i class="fa fa-edit"></i>Edit
-        </button>
-        <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, section)">
-          <i class="fa fa-remove"></i>Delete
-        </button>
-      </td>
-    </tr>
+        <td><span><img src="{{exe.image}}" alt=""></span></td>
+       <td><span>{{exe.type}}</span></td>
+       <td><span>{{exe.idmus}}</span></td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
+            <i class="fa fa-search"></i>Details</button>
+          <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, exe)">
+            <i class="fa fa-edit"></i>Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, exe)">
+            <i class="fa fa-remove" ></i>Delete</button>
+        </td>
+      </tr>
     </tbody>
   </table>
-
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New exe</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" enctype="multipart/form-data" novalidate>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <div class="input-group">
+          <input id="title" name="title" class="form-control" ngModel>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <textarea name="description" id="description" cols="30" rows="10" class="form-control" ngModel></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="input-group">
+          <input type="file" name="image" id="image" class="form-control" accept="image/*"
+            (change)="onFileSelected($event)" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Type</label>
+        <div class="input-group">
+          <input id="type" type="text" name="type" class="form-control" placeholder="barrocco" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="idmus">Idmus</label>
+        <div class="input-group">
+          <select [(ngModel)]="selected" name="idmus" placeholder="select" >
+            <option *ngFor="let sta of exeSel" [ngValue]="sta.id">{{sta.id}} {{sta.title}}</option>
+        </select>
+        </div>
+      </div>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">exe Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <div class="input-group">
+          <input id="title1" name="title1" class="form-control" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <div class="input-group">
+          <input id="address1" name="address1" class="form-control" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <textarea name="description1" id="description1" cols="30" rows="10" class="form-control" disabled></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="input-group">
+          <input type="text" name="image1" id="image1" class="form-control" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lat">Latitude</label>
+        <div class="input-group">
+          <input id="lat1" type="number" name="lat1" class="form-control" placeholder="32.12324" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lon">Longitude</label>
+        <div class="input-group">
+          <input id="lon1" type="number" name="lon1" class="form-control" placeholder="32.12324" disabled>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">exe Edit</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onEdit(f)" enctype="multipart/form-data" novalidate>
+
+      <div class="form-group">
+        <label for="id">Id</label>
+        <div class="input-group">
+          <input id="id" type="number" name="id" class="form-control" readonly>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <div class="input-group">
+          <input id="title" name="title" class="form-control" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <div class="input-group">
+          <input id="address" name="address" class="form-control" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <textarea name="description" id="description" cols="30" rows="10" class="form-control" ngModel></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="input-group">
+          <input type="file" name="image" id="image" class="form-control" accept="image/*"
+            (change)="onFileSelected($event)" ngModel>
+          <label id="image21"></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lat">Latitude</label>
+        <div class="input-group">
+          <input id="lat" type="number" name="lat" class="form-control" placeholder="32.12324" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lon">Longitude</label>
+        <div class="input-group">
+          <input id="lon" type="number" name="lon" class="form-control" placeholder="32.12324" ngModel>
+        </div>
+      </div>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+
+
+    <h4 class="modal-title">Confirm Delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h2>Are you sure you want to delete this record.</h2>
+    <div class="border text-center">
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+
+</ng-template>

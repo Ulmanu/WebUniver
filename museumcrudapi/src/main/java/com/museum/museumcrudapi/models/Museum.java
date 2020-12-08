@@ -21,9 +21,9 @@ public class Museum {
   private String image;
   private double lat;
   private double lon;
-  @OneToMany(targetEntity = Section.class,cascade = CascadeType.ALL)
-  @JoinColumn(name = "idmus",referencedColumnName = "id")
-  private List<Section> sections;
+//  @OneToMany(targetEntity = Section.class,cascade = CascadeType.ALL)
+//  @JoinColumn(name = "idmus",referencedColumnName = "id")
+//  private List<Section> sections;
 
   public int getId() {
     return this.id;

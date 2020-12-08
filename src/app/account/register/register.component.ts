@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {first} from 'rxjs/operators';
+import { AuthService } from 'src/app/_services/auth.service';
 declare var $: any;
 @Component({
   selector: 'app-register',
@@ -11,46 +12,31 @@ declare var $: any;
 })
 export class RegisterComponent implements OnInit {
 
-  form: FormGroup;
-  loading = false;
-  submitted = false;
+  form: any = {};
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-  ) { }
+  constructor(private authService: AuthService,private router: Router) { }
 
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      password1: ['', [Validators.required, Validators.minLength(8)]],
-      password2: ['', [Validators.required, Validators.minLength(8)]]
-    });
-
-    $(document).ready(function(){
-      $('.input').focus(function(){
-        $(this).parent().find('.label-txt').addClass('label-active');
-      });
-      $('.input').focusout(function(){
-        if ($(this).val() == '') {
-          $(this).parent().find('.label-txt').removeClass('label-active');
-        }
-      });
-    });
+  ngOnInit(): void {
   }
 
-  // convenience getter for easy access to form fields
-  get f() { return this.form.controls; }
-
-  onSubmit() {
-    this.submitted = true;
-
-    this.loading = true;
-    console.log(this.form.value);
-
+  onSubmit(): void {
+    this.authService.register(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        alert("Successful Registration");
+        this.router.navigate(['/login']);
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+        alert("Something went wrong");
+      }
+    );
   }
-
 
 }

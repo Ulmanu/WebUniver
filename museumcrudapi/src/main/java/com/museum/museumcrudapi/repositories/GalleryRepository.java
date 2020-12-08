@@ -13,9 +13,9 @@ import java.util.Optional;
 public interface GalleryRepository extends JpaRepository<Gallery,Integer>{
   Optional<Object> findByTitle(String title);
 
-  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumSectionJoinResponse(c.id,c.title) FROM Museum c JOIN c.sections p WHERE p.idmus=?1")
-  public List<MuseumSectionJoinResponse> getSectionByIdmus(int idmus);
-
-  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumSectionJoinResponse(c.id,c.title) FROM Museum c JOIN c.sections p ")
-  public List<MuseumSectionJoinResponse> getSectionByIdmus2();
+//  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumSectionJoinResponse(c.id,c.title) FROM Museum c JOIN c.sections p WHERE p.idmus=?1")
+//  public List<MuseumSectionJoinResponse> getSectionByIdmus(int idmus);
+//
+//  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumSectionJoinResponse(c.id,c.title) FROM Museum c JOIN c.sections p ")
+//  public List<MuseumSectionJoinResponse> getSectionByIdmus2();
 }

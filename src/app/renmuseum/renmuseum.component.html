@@ -6,10 +6,74 @@
   <hr class="style-one wow fadeInRight">
   <h3 class="text-center wow zoomInDown">Renaissance</h3>
   <p class="text-center">Renașterea a fost o mișcare culturală care s-a întins pe perioada secolelor XIV-XVI.
-    dsjfsdlkjfsldkjfkjsdhkfdhfhgsihd
-    <a href="https://www.history.com/topics/renaissance/renaissance">Citește mai mult.</a> Unele din cele mai frumoase lucrări artistice
-     au fost create in perioada renașterei și includ:
-   </p>
+    A debutat în Italia, în perioada Evului Mediu Târziu și ulterior, s-a răspândit în restul Europei.
+    Deși apariția tiparului a accelerat difuzarea ideilor în secolul al XV-lea, schimbările Renașterii nu au fost
+    experimentate
+    uniform de întreaga Europă.
+
+    Ca o mișcare culturală, a cuprins înflorirea inovatoare a literaturii latine și autohtone, începând din secolul al
+    XIV-lea,
+    când erau cercetate sursele literare din antichitatea clasică căreia i-a fost creditată lui Francesco Petrarca,
+    apoi a debutat dezvoltarea liniară de perspectivă a tehnicilor de acordare a unei realități mult mai naturale în
+    pictură,
+    și treptat, la scară largă ceea ce a dus la o reforma educațională.
+
+    În politică, Renașterea a contribuit la dezvoltarea convențiilor diplomatice precum și în știință.
+    Istoricii susțin că Renașterea a fost perioada de tranziție dintre Evul Mediu și Istoria Modernă.
+    Renașterea a văzut revoluții în preocupări intelectuale, dar și schimbări sociale și politice ce au influențat
+    evoluțiile artistice și contribuțiile depuse de personalități ca Leonardo da Vinci, după care a fost inspirat
+    noțiunea
+    de "omul renașterii". Renașterea a început în Florența, Italia, în secolul al XIV-lea. Diverse teorii au fost
+    propuse
+    pentru a explică origine și caracteristicile renașterii, concentrându-se pe o varietate de factori, incluși pe
+    particularitățile
+    sociale și civice din Florența: structura sa politică, patronajul familiei Medici și migrarea savanților greci și
+    textelor
+    în Italia după căderea Constantinopolului în mâinile turcilor.
+    <a href="https://www.history.com/topics/renaissance/renaissance">Citește mai mult.</a> Unele din cele mai frumoase
+    lucrări artistice
+    au fost create in perioada renașterei și includ:
+  </p>
+</div>
+
+<div class="container">
+  <div class="card-columns">
+
+    <div class="card view overlay zoom" *ngFor="let exe of exes" id="assumption-show" data-toggle="modal"
+      [attr.data-target]="'#modal' + exe.id">
+      <img class="card-img-top wow fadeInUp" src="{{exe.image}}" alt="Card image cap">
+      <div class="card-img-overlay" id="assumption">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" *ngFor="let exe of exes" [attr.id]="'modal' + exe.id" tabindex="-1" role="dialog"
+  aria-labelledby="modal1label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal1label"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <p class="card-text">{{exe.title}}</p>
+         <p class="card-text">{{exe.address}}</p>
+         <p>{{exe.description}}</p>
+         <p>{{exe.lat}} ,{{exe.lon}}</p>
+         <p><iframe src="https://maps.google.com/maps?q=47.023156985418424, 28.827895465626337&z=15&output=embed" width="450" height="350" frameborder="0" style="border:0"></iframe>
+         </p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 

@@ -51,13 +51,13 @@ public class MuseumController {
     return service.deleteMuseum(id);
   }
 
-  @GetMapping("/getjoinmus/{idmus}")
-  public List<MuseumSectionJoinResponse> getSectionJoin(@PathVariable int idmus) {
-    return repository.getSectionByIdmus(idmus);
-  }
-
-  @GetMapping("/getjoinmuss")
-  public List<MuseumSectionJoinResponse> getSectionJoinNoParams() {
-    return repository.getSectionByIdmus2();
-  }
+//  @GetMapping("/getjoinmus/{idmus}")
+//  public List<MuseumSectionJoinResponse> getSectionJoin(@PathVariable int idmus) {
+//    return repository.getSectionByIdmus(idmus);
+//  }
+//
+//  @GetMapping("/getjoinmuss")
+//  public List<MuseumSectionJoinResponse> getSectionJoinNoParams() {
+//    return repository.getSectionByIdmus2();
+//  }
 }

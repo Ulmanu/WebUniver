@@ -20,7 +20,7 @@ label {
 .label-txt {
   position: absolute;
   top: -1.6em;
-  padding: 10px;
+  padding: 0px;
   font-family: sans-serif;
   font-size: .8em;
   letter-spacing: 1px;
@@ -41,7 +41,13 @@ label {
   height: 2px;
   background: whitesmoke;
 }
-
+input {
+  width: 100%;
+  padding: 0px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
 .line {
   position: absolute;
   width: 0%;

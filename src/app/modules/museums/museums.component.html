@@ -1,7 +1,7 @@
 <div class="container">
   <div class="border">
     <button class="btn btn-md btn-outline-primary" (click)="open(content)">
-      <i class="fa fa-user"></i>New Museum
+      <i class="fa fa-user"></i>New exe
     </button>
   </div>
   <table class="table table-bordered table-striped">
@@ -19,26 +19,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let museum of museums">
-        <td><span>{{museum.id}}</span></td>
-        <td><span>{{museum.title}}</span></td>
-        <td><span>{{museum.address}}</span></td>
-        <td style="width: 200px;"><span>{{museum.description}}</span></td>
+      <tr *ngFor="let exe of exes">
+        <td><span>{{exe.id}}</span></td>
+        <td><span>{{exe.title}}</span></td>
+        <td><span>{{exe.address}}</span></td>
+        <td style="width: 200px;"><span>{{exe.description}}</span></td>
 
-        <td><span><img src="{{museum.image}}" alt=""></span></td>
+        <td><span><img src="{{exe.image}}" alt=""></span></td>
         <td>
           <span>
-            Latitude: {{museum.lat}}
+            Latitude: {{exe.lat}}
             <br>
-            Longitude: {{museum.lon}}
+            Longitude: {{exe.lon}}
           </span>
         </td>
         <td>
-          <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, museum)">
+          <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
             <i class="fa fa-search"></i>Details</button>
-          <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, museum)">
+          <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, exe)">
             <i class="fa fa-edit"></i>Edit</button>
-          <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, museum)">
+          <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, exe)">
             <i class="fa fa-remove" ></i>Delete</button>
         </td>
       </tr>
@@ -48,7 +48,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">New Museum</h4>
+    <h4 class="modal-title" id="modal-basic-title">New exe</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -110,7 +110,7 @@
 
 <ng-template #contentDetails let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Museum Details</h4>
+    <h4 class="modal-title" id="modal-basic-title">exe Details</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -168,7 +168,7 @@
 
 <ng-template #contentEdit let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Museum Edit</h4>
+    <h4 class="modal-title" id="modal-basic-title">exe Edit</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -239,6 +239,8 @@
 
 <ng-template #contentDelete let-modal>
   <div class="modal-header">
+
+
     <h4 class="modal-title">Confirm Delete</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -253,4 +255,5 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
   </div>
+
 </ng-template>

@@ -98,18 +98,20 @@ select * from `exponat`;
 DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
-  `iduser` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+   username varchar(100),
+  `name` varchar(100) ,
   `image` mediumtext,
   password varchar(100),
-  email varchar(100) unique not null,
+  email varchar(100) ,
   role varchar(100),
-  PRIMARY KEY (`iduser`)
+ 
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into `user` (name, password, email,image,role) values
-('Victor Ungureanu','fdfd','a@dfsd.com','images/museums/istorie.jpg','admin'),
-('Victor Ungureanu','fdfd','ad@dfsd.com','images/museums/istorie.jpg','');
+-- insert into `user` (name, username,password, email,image,role) values
+-- ('Victor Ungureanu','fdfd','a@dfsd.com','images/museums/istorie.jpg','admin','jj'),
+-- ('Victor Ungureanu','fdfd','ad@dfsd.com','images/museums/istorie.jpg','','hh');
 select * from `user`;
 
 
@@ -122,14 +124,14 @@ CREATE TABLE `payment` (
   `idpay` bigint NOT NULL AUTO_INCREMENT,
   `cardnumber` varchar(16) NOT NULL unique,
 	amount float,
-    iduser bigint,
+    id bigint,
   PRIMARY KEY (`idpay`),
-  foreign key(iduser) references user(iduser) ON UPDATE CASCADE ON delete CASCADE
+  foreign key(id) references user(id) ON UPDATE CASCADE ON delete CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into `payment` (cardnumber, amount, iduser) values
-('1234567890123456',20000,1);
-select * from `payment`;
+-- insert into `payment` (cardnumber, amount, id) values
+-- ('1234567890123456',20000,1);
+-- select * from `payment`;
 
 
 --
@@ -206,20 +208,20 @@ DROP TABLE IF EXISTS `tur`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `tur` (
   `idtur` bigint NOT NULL AUTO_INCREMENT,
-   `iduser` bigint,
+   `id` bigint,
    `idmus` bigint,
    idsect bigint,
   `date` date,
   idturtype bigint,
    PRIMARY KEY (`idtur`),
-   foreign key (`iduser`) references `user`(`iduser`)ON UPDATE CASCADE ON delete CASCADE,
+   foreign key (`id`) references `user`(`id`)ON UPDATE CASCADE ON delete CASCADE,
 	foreign key (`idmus`) references `museum`(`id`) ON UPDATE CASCADE ON delete CASCADE,
     foreign key (idsect) references section(idsect) ON UPDATE CASCADE ON delete CASCADE,
       foreign key (idturtype) references turtype(idturtype) ON UPDATE CASCADE ON delete CASCADE
  
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into tur values (1,1,1,1,'2008-11-11',1);
+-- insert into tur values (1,1,1,1,'2008-11-11',1);
 --
 -- Table structure for table `purchase`
 --
@@ -227,13 +229,13 @@ DROP TABLE IF EXISTS `purchase`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `purchase` (
   `idpur` bigint NOT NULL AUTO_INCREMENT,
-   `iduser` bigint,
+   `id` bigint,
    `idmus` bigint,
    idsouvam bigint,
   `date` date,
   idturtype bigint,
    PRIMARY KEY (`idpur`),
-   foreign key (`iduser`) references `user`(`iduser`) ON UPDATE CASCADE ON delete CASCADE,
+   foreign key (`id`) references `user`(`id`) ON UPDATE CASCADE ON delete CASCADE,
    foreign key (`idmus`) references `museum`(`id`) ON UPDATE CASCADE ON delete CASCADE,
 	foreign key (`idsouvam`) references `souvenirsamount`(`idsuva`) ON UPDATE CASCADE ON delete CASCADE
  

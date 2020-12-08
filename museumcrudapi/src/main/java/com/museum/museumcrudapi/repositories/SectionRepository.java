@@ -17,10 +17,10 @@ import java.util.Optional;
 public interface SectionRepository extends JpaRepository<Section, Integer> {
   Optional<Object> findByTitle(String title);
 
-  @Query("SELECT new com.museum.museumcrudapi.dto.SectionGalleryJoin(c.idsect,c.title) FROM Section c JOIN c.galleries p WHERE p.idsect=?1")
+  @Query("SELECT new com.museum.museumcrudapi.dto.SectionGalleryJoin(c.idsect,c.title) FROM Section c JOIN Gallery p on p.idsect=c.idsect")
   public List<SectionGalleryJoin> getGalleryByIdsect(int idsect);
 
-  @Query("SELECT new com.museum.museumcrudapi.dto.SectionGalleryJoin(c.idsect,c.title) FROM Section c JOIN c.galleries p ")
+  @Query("SELECT new com.museum.museumcrudapi.dto.SectionGalleryJoin(c.idsect,c.title) FROM Section c JOIN Gallery p on p.idsect=c.idsect")
   public List<SectionGalleryJoin> getGalleryByIdsect2();
 
   @Query("select  new com.museum.museumcrudapi.dto.CountSectionType(count (c.idsect) ) from Section c group by c.type")
