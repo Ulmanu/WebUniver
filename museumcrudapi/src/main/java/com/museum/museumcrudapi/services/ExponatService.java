@@ -14,7 +14,8 @@ public class ExponatService {
   @Autowired
   private ExponatRepository repository;
 
-  public Exponat saveExponat(Exponat exponat) {
+  public Exponat saveExponat(Exponat exponat,Integer idgal) {
+    exponat.setIdgal(idgal);
     return repository.save(exponat);
   }
 

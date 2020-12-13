@@ -14,7 +14,8 @@ public class GalleryService {
   @Autowired
   private GalleryRepository repository;
 
-  public Gallery saveGallery(Gallery gallery) {
+  public Gallery saveGallery(Gallery gallery,Integer idsect) {
+    gallery.setIdsect(idsect);
     return repository.save(gallery);
   }
 

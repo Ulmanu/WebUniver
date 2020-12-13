@@ -24,28 +24,22 @@ public class Purchase {
     this.idpur = idpur;
   }
 
-  public int getIduser() {
-    return iduser;
+  public int getId() {
+    return id;
   }
 
-  public void setIduser(int iduser) {
-    this.iduser = iduser;
+  public void setId(int iduser) {
+    this.id = iduser;
   }
 
-  public int getIdmus() {
-    return idmus;
+
+
+  public int getIdsouvam() {
+    return idsouvam;
   }
 
-  public void setIdmus(int idmus) {
-    this.idmus = idmus;
-  }
-
-  public int getIdsuvam() {
-    return idsuvam;
-  }
-
-  public void setIdsuvam(int idsuvam) {
-    this.idsuvam = idsuvam;
+  public void setIdsouvam(int idsuvam) {
+    this.idsouvam = idsuvam;
   }
 
   public Date getDate() {
@@ -56,22 +50,16 @@ public class Purchase {
     this.date = date;
   }
 
-  public int getIdturtype() {
-    return idturtype;
-  }
 
-  public void setIdturtype(int idturtype) {
-    this.idturtype = idturtype;
-  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idpur;
-  private int iduser;
-  private int idmus;
-  private int idsuvam;
+  private int id;
+
+  private int idsouvam;
   private Date date;
-  private int idturtype;
+
 
 
 

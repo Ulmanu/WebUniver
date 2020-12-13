@@ -15,7 +15,9 @@ public class PurchaseService {
   @Autowired
   private PurchaseRepository repository;
 
-  public Purchase savePurchase(Purchase purchase) {
+  public Purchase savePurchase(Purchase purchase, Integer id, Integer idsouv) {
+    purchase.setId(id);
+    purchase.setIdsouvam(idsouv);
     return repository.save(purchase);
   }
 
@@ -40,11 +42,11 @@ public class PurchaseService {
 
   public Purchase updatePurchase(Purchase purchase) {
     Purchase existingmPurchase = repository.findById((purchase.getIdpur())).orElse(null);
-    existingmPurchase.setIduser(purchase.getIduser());
-    existingmPurchase.setIdmus(purchase.getIdmus());
-    existingmPurchase.setIdsuvam(purchase.getIdsuvam());
+    existingmPurchase.setId(purchase.getId());
+
+    existingmPurchase.setIdsouvam(purchase.getIdsouvam());
     existingmPurchase.setDate(purchase.getDate());
-    existingmPurchase.setIdturtype(purchase.getIdturtype());
+
 
     return repository.save(existingmPurchase);
   }

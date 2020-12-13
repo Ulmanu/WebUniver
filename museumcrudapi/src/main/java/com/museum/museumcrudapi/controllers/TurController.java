@@ -25,9 +25,12 @@ public class TurController {
   private EntityManager em;
 
 
-  @PostMapping("/addtur")
-  public Tur addtur(@RequestBody Tur tur) {
-    return service.saveTur(tur);
+  @PostMapping("/addtur/{id}/{idmus}/{idsect}/{idturtype}")
+  public Tur addtur(@RequestBody Tur tur, @PathVariable Integer id,
+                    @PathVariable Integer idmus,
+                    @PathVariable Integer idsect,
+                    @PathVariable Integer idturtype) {
+    return service.saveTur(tur,id,idmus,idsect,idturtype);
   }
 
   @PostMapping("/addturs")

@@ -39,7 +39,7 @@ public class SouvenirsService {
     existingmSouvenirs.setName(souvenirs.getName());
     existingmSouvenirs.setPrice(souvenirs.getPrice());
     existingmSouvenirs.setImage(souvenirs.getImage());
-    existingmSouvenirs.setIdmuseum(souvenirs.getIdmuseum());
+
 
     return repository.save(existingmSouvenirs);
   }

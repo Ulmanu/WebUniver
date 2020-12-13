@@ -23,12 +23,12 @@ public class Tur {
     this.idtur = idtur;
   }
 
-  public int getIduser() {
-    return iduser;
+  public int getId() {
+    return id;
   }
 
-  public void setIduser(int iduser) {
-    this.iduser = iduser;
+  public void setId(int iduser) {
+    this.id = iduser;
   }
 
   public int getIdmus() {
@@ -66,7 +66,7 @@ public class Tur {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idtur;
-  private int iduser;
+  private int id;
   private int idmus;
   private int idsect;
   private Date date;

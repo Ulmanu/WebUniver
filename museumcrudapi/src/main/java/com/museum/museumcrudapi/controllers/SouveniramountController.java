@@ -18,9 +18,9 @@ public class SouveniramountController {
   private EntityManager em;
 
 
-  @PostMapping("/addsouveniramount")
-  public Souvenirsamount addsouveniramount(@RequestBody Souvenirsamount souvenirsamount) {
-    return service.saveSouveniramount(souvenirsamount);
+  @PostMapping("/addsouveniramount/{idsuv}")
+  public Souvenirsamount addsouveniramount(@RequestBody Souvenirsamount souvenirsamount,@PathVariable Integer idsuv) {
+    return service.saveSouveniramount(souvenirsamount,idsuv);
   }
 
   @PostMapping("/addsouveniramounts")

@@ -5,6 +5,7 @@ import {NgForm} from '@angular/forms';
 import {UploadService} from '../upload.service';
 
 export class Object {
+  idgal: any;
 
 
   constructor(
@@ -17,8 +18,7 @@ export class Object {
    public lon: number,
    public idsect:number,
    public idmus:number,
-   public type:string,
-   public idgal:number
+   public type:string
 
   ) {
   }
@@ -31,7 +31,9 @@ export class Object {
 export class GallerysComponent implements OnInit {
   exes: Object[];
   closeResult: string;
+  exeSel:Object[];
 
+  ObjectFile: File;
 
   constructor(
     private httpClient: HttpClient,
@@ -40,10 +42,11 @@ export class GallerysComponent implements OnInit {
   ) {
   }
 
-  ObjectFile: File;
+
 
   ngOnInit(): void {
     this.getObjects();
+    this.getObjectsSel();
 
   }
 
@@ -52,6 +55,15 @@ export class GallerysComponent implements OnInit {
       response => {
         console.log(response);
         this.exes = response;
+      }
+    );
+  }
+
+  getObjectsSel() {
+    this.httpClient.get<any>('http://localhost:9191/sections').subscribe(
+      response => {
+        console.log(response);
+        this.exeSel = response;
       }
     );
   }
@@ -74,6 +86,7 @@ export class GallerysComponent implements OnInit {
     }
   }
 
+
   onFileSelected1(event) {
     this.ObjectFile = event.target.files[0];
     document.getElementById('image21').innerHTML = this.ObjectFile.name;
@@ -89,21 +102,23 @@ export class GallerysComponent implements OnInit {
 
   onSubmit(f: NgForm) {
 
-    const url = 'http://localhost:9191/addmuseum';
+    const url = 'http://localhost:9191/addgallery/'+f.value.idsect;
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
 
     const body = {
-      title: f.value.title, address: f.value.address, description: f.value.description,
-      image: 'images/museums/' + this.ObjectFile.name, lat: f.value.lat, lon: f.value.lon
+      title: f.value.title, description: f.value.description,
+      image: 'images/museums/' + this.ObjectFile.name,
     };
     this.uploadFileService.uploadFiles(this.ObjectFile);
     const body1 = JSON.stringify(body);
-    console.log(body1);
+    console.log(body);
+    console.log(f.value.idsect);
     this.httpClient.post(url, body)
       .subscribe((result) => {
+        alert(result);
         this.ngOnInit(); //reload the table
       });
     this.modalService.dismissAll(); //dismiss the modal
@@ -117,11 +132,11 @@ export class GallerysComponent implements OnInit {
     });
 
     document.getElementById('title1').setAttribute('value', Object.title);
-    document.getElementById('address1').setAttribute('value', Object.address);
+
     document.getElementById('description1').innerHTML = Object.description;
     document.getElementById('image1').setAttribute('value', Object.image);
-    document.getElementById('lat1').setAttribute('value', Object.lat.toString());
-    document.getElementById('lon1').setAttribute('value', Object.lon.toString());
+
+    document.getElementById('idsect1').setAttribute('value', Object.idsect.toString());
   }
 
   temp: Object;
@@ -133,21 +148,21 @@ export class GallerysComponent implements OnInit {
       size: 'lg'
     });
     this.temp = Object;
-    document.getElementById('id').setAttribute('placeholder', Object.id.toString());
+    document.getElementById('idsect').setAttribute('placeholder', Object.idsect.toString());
     document.getElementById('title').setAttribute('placeholder', Object.title);
-    document.getElementById('address').setAttribute('placeholder', Object.address);
+
     document.getElementById('description').setAttribute('placeholder', Object.description);
 
     document.getElementById('image21').innerHTML = Object.image;
-    document.getElementById('lat').setAttribute('placeholder', Object.lat.toString());
-    document.getElementById('lon').setAttribute('placeholder', Object.lon.toString());
-
+    // document.getElementById('type').setAttribute('value', Object.type);
+    // document.getElementById('idmus').setAttribute('value', Object.idmus.toString());
+console.log(this.temp);
   }
 
   onEdit(f: NgForm) {
 
 
-    const url1 = 'http://localhost:9191/update';
+    const url1 = 'http://localhost:9191/updategal';
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -156,13 +171,11 @@ export class GallerysComponent implements OnInit {
 
     document.getElementById('image21').innerHTML = this.ObjectFile.name;
     const body = {
-      id: this.temp.id,
+      idgal: this.temp.idgal,
       title: f.value.title,
-      address: f.value.address,
       description: f.value.description,
       image: 'images/museums/' + document.getElementById('image21').innerHTML.replace('images/Objects/', ''),
-      lat: f.value.lat,
-      lon: f.value.lon
+      idsect:f.value.idsect
     };
     console.log(body);
 
@@ -181,7 +194,7 @@ export class GallerysComponent implements OnInit {
   deleteId: string;
 
   openDelete(targetModal, Object: Object) {
-    this.deleteId = Object.id.toString();
+    this.deleteId = Object.idgal.toString();
     this.modalService.open(targetModal, {
       backdrop: 'static',
       size: 'lg'
@@ -189,7 +202,7 @@ export class GallerysComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:9191/delete/' + this.deleteId;
+    const deleteURL = 'http://localhost:9191/deletegal/' + this.deleteId;
     this.httpClient.delete(deleteURL)
       .subscribe((result) => {
 

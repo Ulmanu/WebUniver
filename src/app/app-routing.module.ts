@@ -19,6 +19,12 @@ import {DataComponent} from './data/data.component';
 // import {SouvenirsamountComponent} from './modules/souvenirsamount/souvenirsamount.component';
 import {LoginComponent} from './account/login/login.component';
 import {RegisterComponent} from './account/register/register.component';
+import { TursComponent } from './modules/turs/turs.component';
+import { PurchasesComponent } from './modules/purchases/purchases.component';
+import { PaymentsComponent } from './modules/payments/payments.component';
+import { TurtypesComponent } from './modules/turtypes/turtypes.component';
+import { SouvenirsComponent } from './modules/souvenirs/souvenirs.component';
+import { SouvenirsamountComponent } from './modules/souvenirsamount/souvenirsamount.component';
 const routes: Routes = [
   {path: '', component: GaleryComponent},
   {path: 'renmuseum', component: RenmuseumComponent},
@@ -52,30 +58,30 @@ const routes: Routes = [
         component: UsersComponent
       },
 
-      // {
-      //   path: 'turadd',
-      //   component: TursComponent
-      // },
-      // {
-      //   path: 'purchaseadd',
-      //   component: PurchaseComponent
-      // },
-      // {
-      //   path: 'paymentadd',
-      //   component: PaymentComponent
-      // },
-      // {
-      //   path: 'turtypeadd',
-      //   component: TurtypeComponent
-      // },
-      // {
-      //   path: 'souvenirsadd',
-      //   component: SouvenirsComponent
-      // },
-      // {
-      //   path: 'souvenirsamountadd',
-      //   component: SouvenirsamountComponent
-      // }
+      {
+        path: 'turadd',
+        component: TursComponent
+      },
+      {
+        path: 'purchaseadd',
+        component: PurchasesComponent
+      },
+      {
+        path: 'paymentadd',
+        component: PaymentsComponent
+      },
+      {
+        path: 'turtypeadd',
+        component: TurtypesComponent
+      },
+      {
+        path: 'souvenirsadd',
+        component: SouvenirsComponent
+      },
+      {
+        path: 'souvenirsamountadd',
+        component: SouvenirsamountComponent
+      }
 
 
     ]

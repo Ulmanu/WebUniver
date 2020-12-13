@@ -23,9 +23,9 @@ public class SectionController {
   private EntityManager em;
 
 
-  @PostMapping("/addsection")
-  public Section addsection(@RequestBody Section section) {
-    return service.saveSection(section);
+  @PostMapping("/addsection/{idmus}")
+  public Section addsection(@RequestBody Section section, @PathVariable int idmus) {
+    return service.saveSection(section,idmus);
   }
 
   @PostMapping("/addsections")

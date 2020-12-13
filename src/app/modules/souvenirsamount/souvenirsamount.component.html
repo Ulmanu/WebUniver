@@ -1,0 +1,168 @@
+
+<div class="container">
+  <div class="border">
+    <button class="btn btn-md btn-outline-primary" (click)="open(content)">
+      <i class="fa fa-user"></i>New exe
+    </button>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Amount</th>
+
+     <th>IDSuv</th>
+
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exe of exes">
+        <td><span>{{exe.idsuva}}</span></td>
+        <td><span>{{exe.amount}}</span></td>
+
+       <td><span>{{exe.idsuv}}</span></td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
+            <i class="fa fa-search"></i>Details</button>
+          <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, exe)">
+            <i class="fa fa-edit"></i>Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, exe)">
+            <i class="fa fa-remove" ></i>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New exe</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" enctype="multipart/form-data" novalidate>
+
+
+
+      <div class="form-group">
+        <label for="title">Amount</label>
+        <div class="input-group">
+          <input id="amount" name="amount" type="number" class="form-control" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">IdSuv</label>
+        <div class="input-group">
+
+          <select [(ngModel)]="selected" name="idsuv" placeholder="select" >
+            <option *ngFor="let sta of exeSel" [ngValue]="sta.idsuv">{{sta.idsuv}} {{sta.name}}</option>
+        </select>
+        </div>
+      </div>
+
+
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">exe Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="title">Amount</label>
+        <div class="input-group">
+          <input id="amount" name="amount" type="number" class="form-control" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">IdSuv</label>
+        <div class="input-group">
+
+          <input id="idsuv" name="IDSUV" type="number" class="form-control" disabled>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">exe Edit</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onEdit(f)" enctype="multipart/form-data" novalidate>
+      <div class="form-group">
+        <label for="title">Amount</label>
+        <div class="input-group">
+          <input id="amount1" name="amount" type="number" class="form-control" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">IdSuv</label>
+        <div class="input-group">
+
+          <select [(ngModel)]="selected" name="idsuv" placeholder="select" >
+            <option *ngFor="let sta of exeSel" [ngValue]="sta.idsuv">{{sta.idsuv}} {{sta.name}}</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+
+
+    <h4 class="modal-title">Confirm Delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h2>Are you sure you want to delete this record.</h2>
+    <div class="border text-center">
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+
+</ng-template>

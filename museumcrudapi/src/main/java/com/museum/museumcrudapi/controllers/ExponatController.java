@@ -21,9 +21,9 @@ public class ExponatController {
   private EntityManager em;
 
 
-  @PostMapping("/addexponat")
-  public Exponat addexponat(@RequestBody Exponat exponat) {
-    return service.saveExponat(exponat);
+  @PostMapping("/addexponat/{idgal}")
+  public Exponat addexponat(@RequestBody Exponat exponat, @PathVariable int idgal) {
+    return service.saveExponat(exponat,idgal);
   }
 
   @PostMapping("/addexponats")

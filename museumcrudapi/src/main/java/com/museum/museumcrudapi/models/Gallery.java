@@ -20,9 +20,7 @@ public class Gallery {
   private String description;
   private String image;
   private int idsect;
-//  @OneToMany(targetEntity = Exponat.class,cascade = CascadeType.ALL)
-//  @JoinColumn(name = "idgal",referencedColumnName = "idgal")
-//  private List<Section> galleries;
+//
 
   public void setIdgal(int idgal) {
     this.idgal = idgal;

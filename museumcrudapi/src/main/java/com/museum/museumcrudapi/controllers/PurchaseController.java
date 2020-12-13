@@ -27,9 +27,11 @@ public class PurchaseController {
   private EntityManager em;
 
 
-  @PostMapping("/addpurchase")
-  public Purchase addpurchase(@RequestBody Purchase purchase) {
-    return service.savePurchase(purchase);
+  @PostMapping("/addpurchase/{id}/{idsouv}")
+  public Purchase addpurchase(@RequestBody Purchase purchase,
+                              @PathVariable Integer id,
+                              @PathVariable Integer idsouv) {
+    return service.savePurchase(purchase,id,idsouv);
   }
 
   @PostMapping("/addpurchases")

@@ -1,10 +1,6 @@
 package com.museum.museumcrudapi.services;
 
-import com.museum.museumcrudapi.models.Gallery;
-import com.museum.museumcrudapi.models.Museum;
 import com.museum.museumcrudapi.models.Tur;
-import com.museum.museumcrudapi.repositories.GalleryRepository;
-import com.museum.museumcrudapi.repositories.MuseumRepository;
 import com.museum.museumcrudapi.repositories.TurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +12,12 @@ public class TurService {
   @Autowired
   private TurRepository repository;
 
-  public Tur saveTur(Tur tur) {
+  public Tur saveTur(Tur tur, Integer id, Integer idmus, Integer idsect, Integer idturtype) {
+
+    tur.setId(id);
+    tur.setIdmus(idmus);
+    tur.setIdsect(idsect);
+    tur.setIdturtype(idturtype);
     return repository.save(tur);
   }
 
@@ -43,7 +44,7 @@ public class TurService {
     Tur existingmTur = repository.findById((tur.getIdtur())).orElse(null);
     existingmTur.setIdmus(tur.getIdmus());
     existingmTur.setIdsect(tur.getIdsect());
-    existingmTur.setIduser(tur.getIduser());
+    existingmTur.setId(tur.getId());
     existingmTur.setDate(tur.getDate());
     existingmTur.setIdturtype(tur.getIdturtype());
     return repository.save(existingmTur);

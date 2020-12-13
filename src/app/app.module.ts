@@ -34,6 +34,12 @@ import { GallerysComponent } from './modules/gallerys/gallerys.component';
 import { ExponatsComponent } from './modules/exponats/exponats.component';
 import { UsersComponent } from './modules/users/users.component';
 import { DataComponent } from './data/data.component';
+import { TursComponent } from './modules/turs/turs.component';
+import { PurchasesComponent } from './modules/purchases/purchases.component';
+import { PaymentsComponent } from './modules/payments/payments.component';
+import { TurtypesComponent } from './modules/turtypes/turtypes.component';
+import { SouvenirsComponent } from './modules/souvenirs/souvenirs.component';
+import { SouvenirsamountComponent } from './modules/souvenirsamount/souvenirsamount.component';
 // import { GallerysComponent } from './modules/gallerys/gallerys.component';
 // import { ExponatsComponent } from './modules/exponats/exponats.component';
 // import { UsersComponent } from './modules/users/users.component';
@@ -70,7 +76,13 @@ import { DataComponent } from './data/data.component';
     GallerysComponent,
     ExponatsComponent,
     UsersComponent,
-    DataComponent
+    DataComponent,
+    TursComponent,
+    PurchasesComponent,
+    PaymentsComponent,
+    TurtypesComponent,
+    SouvenirsComponent,
+    SouvenirsamountComponent
 
   ],
   imports: [

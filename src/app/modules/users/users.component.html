@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="border">
     <button class="btn btn-md btn-outline-primary" (click)="open(content)">
@@ -14,9 +13,9 @@
         <th>Name</th>
         <th>Image</th>
 
-     <th>Password</th>
-     <th>Email</th>
-     <th>Role</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Role</th>
 
 
         <th></th>
@@ -24,22 +23,24 @@
     </thead>
     <tbody>
       <tr *ngFor="let exe of exes">
-        <td><span>{{exe.idexp}}</span></td>
-        <td><span>{{exe.title}}</span></td>
+        <td><span>{{exe.id}}</span></td>
+        <td><span>{{exe.username}}</span></td>
+        <td><span>{{exe.name}}</span></td>
 
-        <td style="width: 200px;"><span>{{exe.description}}</span></td>
+
 
         <td><span><img src="{{exe.image}}" alt=""></span></td>
+        <td><span>{{exe.password}}</span></td>
+        <td><span>{{exe.email}}</span></td>
 
-       <td><span>{{exe.idgal}}</span></td>
-       <td><span>{{exe.price}}</span></td>
+        <td><span>{{exe.role}}</span></td>
         <td>
           <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
             <i class="fa fa-search"></i>Details</button>
           <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, exe)">
             <i class="fa fa-edit"></i>Edit</button>
           <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, exe)">
-            <i class="fa fa-remove" ></i>Delete</button>
+            <i class="fa fa-remove"></i>Delete</button>
         </td>
       </tr>
     </tbody>
@@ -54,50 +55,62 @@
     </button>
   </div>
   <div class="modal-body">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" enctype="multipart/form-data" novalidate>
+    <form #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid" name="form" enctype="multipart/form-data" novalidate>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="username">Username</label>
         <div class="input-group">
-          <input id="title" name="title" class="form-control" ngModel>
+          <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3"
+            maxlength="20" #username="ngModel" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="address">Address</label>
+        <label for="lat">Name</label>
         <div class="input-group">
-          <input id="address" name="address" class="form-control" ngModel>
+          <input type="text" class="form-control" name="name" [(ngModel)]="form.name" required
+            #email="ngModel" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="lat">Image</label>
         <div class="input-group">
-          <textarea name="description" id="description" cols="30" rows="10" class="form-control" ngModel></textarea>
+          <input type="file" class="form-control" name="image" [(ngModel)]="form.image"
+            #email="ngModel"   (change)="onFileSelected($event)" />
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="lat">Email</label>
+        <div class="input-group">
+          <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
+            #email="ngModel" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="image">Image</label>
+        <label for="lon">Password</label>
         <div class="input-group">
-          <input type="file" name="image" id="image" class="form-control" accept="image/*"
-            (change)="onFileSelected($event)" ngModel>
+          <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+            #password="ngModel" />
         </div>
-      </div>
+        </div>
+        <div class="form-group">
+          <label for="type">Role</label>
+          <div class="input-group">
 
-      <div class="form-group">
-        <label for="lat">Latitude</label>
-        <div class="input-group">
-          <input id="lat" type="number" name="lat" class="form-control" placeholder="32.12324" ngModel>
-        </div>
-      </div>
+            <select [(ngModel)]="form.role" name="role" placeholder="select" >
+              <option  value="admin">Admin</option>
+              <option  value="user">User</option>
 
-      <div class="form-group">
-        <label for="lon">Longitude</label>
-        <div class="input-group">
-          <input id="lon" type="number" name="lon" class="form-control" placeholder="32.12324" ngModel>
+          </select>
+          </div>
         </div>
-      </div>
-      <div class="border text-center">
+
+
+        <div class="border text-center">
         <button data-dismiss="modal" class="btn btn-info">Submit</button>
       </div>
     </form>
@@ -109,55 +122,62 @@
 
 
 <ng-template #contentDetails let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">exe Details</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
   <div class="modal-body">
-    <form>
+    <form #f="ngForm"  name="form" enctype="multipart/form-data" novalidate>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="username">Username</label>
         <div class="input-group">
-          <input id="title1" name="title1" class="form-control" disabled>
+          <input type="text" id="username" class="form-control" name="username"  required minlength="3"
+            maxlength="20"  readonly />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="address">Address</label>
+        <label for="lat">Name</label>
         <div class="input-group">
-          <input id="address1" name="address1" class="form-control" disabled>
+          <input type="text" id="name" class="form-control" name="name"required
+           readonly />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="lat">Image</label>
         <div class="input-group">
-          <textarea name="description1" id="description1" cols="30" rows="10" class="form-control" disabled></textarea>
+          <input type="text" id="image" class="form-control" name="image"
+             (change)="onFileSelected($event)" readonly />
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="lat">Email</label>
+        <div class="input-group">
+          <input type="email" id="email" class="form-control" name="email"  required email
+            readonly/>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="image">Image</label>
+        <label for="lon">Password</label>
         <div class="input-group">
-          <input type="text" name="image1" id="image1" class="form-control" disabled>
+          <input type="password" id="password" class="form-control" name="password" required minlength="6"
+            readonly/>
         </div>
-      </div>
+        </div>
+        <div class="form-group">
+          <label for="type">Role</label>
+          <div class="input-group">
 
-      <div class="form-group">
-        <label for="lat">Latitude</label>
-        <div class="input-group">
-          <input id="lat1" type="number" name="lat1" class="form-control" placeholder="32.12324" disabled>
-        </div>
-      </div>
+            <select name="role" id="role" placeholder="select" readonly >
+              <option  value="admin">Admin</option>
+              <option  value="user">User</option>
 
-      <div class="form-group">
-        <label for="lon">Longitude</label>
-        <div class="input-group">
-          <input id="lon1" type="number" name="lon1" class="form-control" placeholder="32.12324" disabled>
+          </select>
+          </div>
         </div>
-      </div>
+
+
 
     </form>
   </div>
@@ -174,59 +194,57 @@
     </button>
   </div>
   <div class="modal-body">
-    <form #f="ngForm" (ngSubmit)="onEdit(f)" enctype="multipart/form-data" novalidate>
-
+    <form #f="ngForm" (ngSubmit)="onEdit(f)" name="form" enctype="multipart/form-data" novalidate>
       <div class="form-group">
-        <label for="id">Id</label>
+        <label for="username">Username</label>
         <div class="input-group">
-          <input id="id" type="number" name="id" class="form-control" readonly>
+          <input type="text" class="form-control" name="username" required minlength="3"
+            maxlength="20" id="username1" ngModel />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="lat">Name</label>
         <div class="input-group">
-          <input id="title" name="title" class="form-control" ngModel>
+          <input type="text" class="form-control" name="name" required
+           ngModel id="name1"/>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="address">Address</label>
+        <label for="lat">Image</label>
         <div class="input-group">
-          <input id="address" name="address" class="form-control" ngModel>
+          <input type="file" class="form-control" name="image"
+          accept="image/*"
+          (change)="onFileSelected($event)" ngModel> />
         </div>
       </div>
 
+
+
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="lat">Email</label>
         <div class="input-group">
-          <textarea name="description" id="description" cols="30" rows="10" class="form-control" ngModel></textarea>
+          <input type="email" class="form-control" name="email" required email
+           ngModel id="email1" />
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="image">Image</label>
-        <div class="input-group">
-          <input type="file" name="image" id="image" class="form-control" accept="image/*"
-            (change)="onFileSelected($event)" ngModel>
-          <label id="image21"></label>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label for="lat">Latitude</label>
-        <div class="input-group">
-          <input id="lat" type="number" name="lat" class="form-control" placeholder="32.12324" ngModel>
-        </div>
-      </div>
+        <div class="form-group">
+          <label for="type">Role</label>
+          <div class="input-group">
 
-      <div class="form-group">
-        <label for="lon">Longitude</label>
-        <div class="input-group">
-          <input id="lon" type="number" name="lon" class="form-control" placeholder="32.12324" ngModel>
+            <select ngModel id="role1" name="role" placeholder="select" >
+              <option  value="ROLE_ADMIN">Admin</option>
+              <option  value="ROLE_USER">User</option>
+
+          </select>
+          </div>
         </div>
-      </div>
-      <div class="border text-center">
+
+
+        <div class="border text-center">
         <button data-dismiss="modal" class="btn btn-info">Submit</button>
       </div>
     </form>

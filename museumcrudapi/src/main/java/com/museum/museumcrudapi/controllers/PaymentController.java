@@ -27,9 +27,9 @@ public class PaymentController {
   private EntityManager em;
 
 
-  @PostMapping("/addpayment")
-  public Payment addpayment(@RequestBody Payment payment) {
-    return service.savePayment(payment);
+  @PostMapping("/addpayment/{iduser}")
+  public Payment addpayment(@RequestBody Payment payment,@PathVariable Integer iduser) {
+    return service.savePayment(payment,iduser);
   }
 
   @PostMapping("/addpayments")

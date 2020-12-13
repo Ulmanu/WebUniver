@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgForm} from '@angular/forms';
 import {UploadService} from '../upload.service';
-
+import { AuthService } from 'src/app/_services/auth.service';
 export class Object {
 
 
@@ -24,7 +24,8 @@ export class Object {
    public username:string,
    public name:string,
    public email:string,
-   public password:string
+   public password:string,
+   public role:string
 
   ) {
   }
@@ -43,12 +44,16 @@ export class UsersComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private modalService: NgbModal,
-    private uploadFileService: UploadService
+    private uploadFileService: UploadService,
+    private authService: AuthService
   ) {
   }
 
   ObjectFile: File;
-
+  form: any = {};
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
   ngOnInit(): void {
     this.getObjects();
 
@@ -81,9 +86,10 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  nameImage:string;
   onFileSelected1(event) {
     this.ObjectFile = event.target.files[0];
-    document.getElementById('image21').innerHTML = this.ObjectFile.name;
+    this.nameImage = this.ObjectFile.name;
 
 
   }
@@ -94,25 +100,26 @@ export class UsersComponent implements OnInit {
 
   }
 
-  onSubmit(f: NgForm) {
+  onSubmit() {
+this.form.image='images/museums/' + this.ObjectFile.name;
+console.log(this.form);
 
-    const url = 'http://localhost:9191/addmuseum';
-    var headers = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
+this.uploadFileService.uploadFiles(this.ObjectFile);
+    this.authService.registeruser(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
 
-    const body = {
-      title: f.value.title, address: f.value.address, description: f.value.description,
-      image: 'images/museums/' + this.ObjectFile.name, lat: f.value.lat, lon: f.value.lon
-    };
-    this.uploadFileService.uploadFiles(this.ObjectFile);
-    const body1 = JSON.stringify(body);
-    console.log(body1);
-    this.httpClient.post(url, body)
-      .subscribe((result) => {
-        this.ngOnInit(); //reload the table
-      });
+        this.ngOnInit();
+
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+
+      }
+    );
     this.modalService.dismissAll(); //dismiss the modal
   }
 
@@ -123,12 +130,12 @@ export class UsersComponent implements OnInit {
       size: 'lg'
     });
 
-    document.getElementById('title1').setAttribute('value', Object.title);
-    document.getElementById('address1').setAttribute('value', Object.address);
-    document.getElementById('description1').innerHTML = Object.description;
-    document.getElementById('image1').setAttribute('value', Object.image);
-    document.getElementById('lat1').setAttribute('value', Object.lat.toString());
-    document.getElementById('lon1').setAttribute('value', Object.lon.toString());
+    document.getElementById('username').setAttribute('value', Object.username);
+    document.getElementById('name').setAttribute('value', Object.name);
+
+    document.getElementById('image').setAttribute('value', Object.image);
+    document.getElementById('email').setAttribute('value', Object.email);
+    document.getElementById('password').setAttribute('value', Object.password);
   }
 
   temp: Object;
@@ -140,36 +147,35 @@ export class UsersComponent implements OnInit {
       size: 'lg'
     });
     this.temp = Object;
-    document.getElementById('id').setAttribute('placeholder', Object.id.toString());
-    document.getElementById('title').setAttribute('placeholder', Object.title);
-    document.getElementById('address').setAttribute('placeholder', Object.address);
-    document.getElementById('description').setAttribute('placeholder', Object.description);
 
-    document.getElementById('image21').innerHTML = Object.image;
-    document.getElementById('lat').setAttribute('placeholder', Object.lat.toString());
-    document.getElementById('lon').setAttribute('placeholder', Object.lon.toString());
+    document.getElementById('username1').setAttribute('placeholder', Object.username);
+    document.getElementById('name1').setAttribute('placeholder', Object.name);
+
+    document.getElementById('email1').setAttribute('placeholder', Object.email);
+    document.getElementById('role1').setAttribute('placeholder', Object.role);
 
   }
 
   onEdit(f: NgForm) {
 
 
-    const url1 = 'http://localhost:9191/update';
+    const url1 = 'http://localhost:9191/updateuser';
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
 
 
-    document.getElementById('image21').innerHTML = this.ObjectFile.name;
+
     const body = {
       id: this.temp.id,
-      title: f.value.title,
-      address: f.value.address,
-      description: f.value.description,
-      image: 'images/museums/' + document.getElementById('image21').innerHTML.replace('images/Objects/', ''),
-      lat: f.value.lat,
-      lon: f.value.lon
+      username: f.value.username,
+      name: f.value.name,
+      image:"images/museums/"+this.ObjectFile.name,
+      password:this.temp.password,
+
+      email: f.value.email,
+      role: f.value.role
     };
     console.log(body);
 
@@ -196,7 +202,7 @@ export class UsersComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:9191/delete/' + this.deleteId;
+    const deleteURL = 'http://localhost:9191/deleteuser/' + this.deleteId;
     this.httpClient.delete(deleteURL)
       .subscribe((result) => {
 

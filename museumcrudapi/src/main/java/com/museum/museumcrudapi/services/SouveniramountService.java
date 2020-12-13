@@ -12,7 +12,8 @@ public class SouveniramountService {
   @Autowired
   private SouveniramountRepository repository;
 
-  public Souvenirsamount saveSouveniramount(Souvenirsamount souvenirs) {
+  public Souvenirsamount saveSouveniramount(Souvenirsamount souvenirs,Integer idsuv) {
+    souvenirs.setIdsuv(idsuv);
     return repository.save(souvenirs);
   }
 

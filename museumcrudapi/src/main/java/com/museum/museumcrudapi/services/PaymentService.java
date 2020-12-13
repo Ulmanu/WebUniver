@@ -18,7 +18,8 @@ public class PaymentService {
   @Autowired
   private PaymentRepository repository;
 
-  public Payment savePayment(Payment payment) {
+  public Payment savePayment(Payment payment,Integer iduser) {
+    payment.setIduser(iduser);
     return repository.save(payment);
   }
 

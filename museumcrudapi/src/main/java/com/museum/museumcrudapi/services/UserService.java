@@ -43,6 +43,7 @@ public class UserService {
 
   public User updateUser(User user) {
     User existingmUser = repository.findById((user.getIduser())).orElse(null);
+    existingmUser.setUsername(user.getUsername());
     existingmUser.setName(user.getName());
     existingmUser.setEmail(user.getEmail());
     existingmUser.setImage(user.getImage());

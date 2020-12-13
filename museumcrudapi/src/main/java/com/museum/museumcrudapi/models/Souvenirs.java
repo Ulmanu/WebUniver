@@ -47,13 +47,6 @@ public class Souvenirs {
     this.image = image;
   }
 
-  public int getIdmuseum() {
-    return idmuseum;
-  }
-
-  public void setIdmuseum(int idmuseum) {
-    this.idmuseum = idmuseum;
-  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,5 +54,5 @@ public class Souvenirs {
   private String name;
   private float price;
   private String image;
-  private int idmuseum;
+
 }

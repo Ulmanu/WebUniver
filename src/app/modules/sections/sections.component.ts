@@ -32,7 +32,7 @@ export class SectionsComponent implements OnInit {
   closeResult: string;
   exeSel:Object[];
 
-
+  ObjectFile: File;
 
   constructor(
     private httpClient: HttpClient,
@@ -41,7 +41,7 @@ export class SectionsComponent implements OnInit {
   ) {
   }
 
-  ObjectFile: File;
+
 
   ngOnInit(): void {
     this.getObjects();
@@ -100,7 +100,7 @@ export class SectionsComponent implements OnInit {
 
   onSubmit(f: NgForm) {
 
-    const url = 'http://localhost:9191/addsections';
+    const url = 'http://localhost:9191/addsection/'+f.value.idmus;
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -108,11 +108,12 @@ export class SectionsComponent implements OnInit {
 
     const body = {
       title: f.value.title, description: f.value.description,
-      image: 'images/museums/' + this.ObjectFile.name, type:f.value.type, idmus:2
+      image: 'images/museums/' + this.ObjectFile.name, type:f.value.type
     };
     this.uploadFileService.uploadFiles(this.ObjectFile);
     const body1 = JSON.stringify(body);
-    console.log(body1);
+    console.log(body);
+    console.log(f.value.idmus);
     this.httpClient.post(url, body)
       .subscribe((result) => {
         alert(result);
@@ -129,11 +130,11 @@ export class SectionsComponent implements OnInit {
     });
 
     document.getElementById('title1').setAttribute('value', Object.title);
-    document.getElementById('address1').setAttribute('value', Object.address);
+
     document.getElementById('description1').innerHTML = Object.description;
     document.getElementById('image1').setAttribute('value', Object.image);
-    document.getElementById('lat1').setAttribute('value', Object.lat.toString());
-    document.getElementById('lon1').setAttribute('value', Object.lon.toString());
+    document.getElementById('type1').setAttribute('value', Object.type);
+    document.getElementById('idmus1').setAttribute('value', Object.idmus.toString());
   }
 
   temp: Object;
@@ -145,21 +146,21 @@ export class SectionsComponent implements OnInit {
       size: 'lg'
     });
     this.temp = Object;
-    document.getElementById('id').setAttribute('placeholder', Object.id.toString());
+    document.getElementById('idsect').setAttribute('placeholder', Object.idsect.toString());
     document.getElementById('title').setAttribute('placeholder', Object.title);
-    document.getElementById('address').setAttribute('placeholder', Object.address);
+
     document.getElementById('description').setAttribute('placeholder', Object.description);
 
     document.getElementById('image21').innerHTML = Object.image;
-    document.getElementById('lat').setAttribute('placeholder', Object.lat.toString());
-    document.getElementById('lon').setAttribute('placeholder', Object.lon.toString());
-
+    // document.getElementById('type').setAttribute('value', Object.type);
+    // document.getElementById('idmus').setAttribute('value', Object.idmus.toString());
+console.log(this.temp);
   }
 
   onEdit(f: NgForm) {
 
 
-    const url1 = 'http://localhost:9191/update';
+    const url1 = 'http://localhost:9191/updatesec';
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -168,13 +169,12 @@ export class SectionsComponent implements OnInit {
 
     document.getElementById('image21').innerHTML = this.ObjectFile.name;
     const body = {
-      id: this.temp.id,
+      idsect: this.temp.idsect,
       title: f.value.title,
-      address: f.value.address,
       description: f.value.description,
       image: 'images/museums/' + document.getElementById('image21').innerHTML.replace('images/Objects/', ''),
-      lat: f.value.lat,
-      lon: f.value.lon
+      type:f.value.type,
+      idmus:f.value.idmus
     };
     console.log(body);
 
@@ -193,7 +193,7 @@ export class SectionsComponent implements OnInit {
   deleteId: string;
 
   openDelete(targetModal, Object: Object) {
-    this.deleteId = Object.id.toString();
+    this.deleteId = Object.idsect.toString();
     this.modalService.open(targetModal, {
       backdrop: 'static',
       size: 'lg'
@@ -201,7 +201,7 @@ export class SectionsComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:9191/delete/' + this.deleteId;
+    const deleteURL = 'http://localhost:9191/deletesec/' + this.deleteId;
     this.httpClient.delete(deleteURL)
       .subscribe((result) => {
 

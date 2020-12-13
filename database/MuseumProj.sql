@@ -124,9 +124,9 @@ CREATE TABLE `payment` (
   `idpay` bigint NOT NULL AUTO_INCREMENT,
   `cardnumber` varchar(16) NOT NULL unique,
 	amount float,
-    id bigint,
+    iduser bigint,
   PRIMARY KEY (`idpay`),
-  foreign key(id) references user(id) ON UPDATE CASCADE ON delete CASCADE
+  foreign key(iduser) references user(id) ON UPDATE CASCADE ON delete CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- insert into `payment` (cardnumber, amount, id) values
@@ -144,13 +144,11 @@ CREATE TABLE `souvenirs` (
   `name` varchar(100) NOT NULL unique,
 	price float,
     image mediumtext,
-    idmuseum bigint,
-  PRIMARY KEY (`idsuv`),
-    foreign key(idmuseum) references museum(id) ON UPDATE CASCADE ON delete CASCADE
+  PRIMARY KEY (`idsuv`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into `souvenirs` (name,price,image,idmuseum) values
-('Teddy',1000,'fdgdfg',1);
+insert into `souvenirs` (name,price,image) values
+('Teddy',1000,'fdgdfg');
 select * from `souvenirs`;
 
 --
@@ -230,13 +228,42 @@ DROP TABLE IF EXISTS `purchase`;
 CREATE TABLE `purchase` (
   `idpur` bigint NOT NULL AUTO_INCREMENT,
    `id` bigint,
-   `idmus` bigint,
+
    idsouvam bigint,
   `date` date,
-  idturtype bigint,
+
    PRIMARY KEY (`idpur`),
    foreign key (`id`) references `user`(`id`) ON UPDATE CASCADE ON delete CASCADE,
-   foreign key (`idmus`) references `museum`(`id`) ON UPDATE CASCADE ON delete CASCADE,
+
 	foreign key (`idsouvam`) references `souvenirsamount`(`idsuva`) ON UPDATE CASCADE ON delete CASCADE
  
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+create table roles
+(
+    id   int auto_increment
+        primary key,
+    name varchar(20) null
+);
+
+create table user_roles
+(
+    user_id bigint not null,
+    role_id int    not null,
+    primary key (user_id, role_id),
+    constraint FK55itppkw3i07do3h7qoclqd4k
+        foreign key (user_id) references user (id),
+    constraint FKh8ciramu9cc9q3qcqiv4ue8a6
+        foreign key (role_id) references roles (id)
+);
+INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+alter table user_roles drop foreign key FK55itppkw3i07do3h7qoclqd4k;
+
+alter table user_roles
+	add constraint FK55itppkw3i07do3h7qoclqd4k
+		foreign key (user_id) references user (id)
+			on update cascade on delete cascade;
+            
+            
+            

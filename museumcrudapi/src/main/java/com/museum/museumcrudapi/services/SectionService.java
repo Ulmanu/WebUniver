@@ -14,7 +14,9 @@ public class SectionService {
   @Autowired
   private SectionRepository repository;
 
-  public Section saveSection(Section section) {
+  public Section saveSection(Section section, Integer idmus) {
+
+    section.setIdmus(idmus);
     return repository.save(section);
   }
 

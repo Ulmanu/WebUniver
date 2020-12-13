@@ -22,9 +22,9 @@ public class GalleryController {
   private EntityManager em;
 
 
-  @PostMapping("/addgallery")
-  public Gallery addgallery(@RequestBody Gallery gallery) {
-    return service.saveGallery(gallery);
+  @PostMapping("/addgallery/{idsect}")
+  public Gallery addgallery(@RequestBody Gallery gallery,@PathVariable int idsect) {
+    return service.saveGallery(gallery,idsect);
   }
 
   @PostMapping("/addgallerys")

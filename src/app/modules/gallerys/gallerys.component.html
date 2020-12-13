@@ -59,12 +59,7 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="address">Address</label>
-        <div class="input-group">
-          <input id="address" name="address" class="form-control" ngModel>
-        </div>
-      </div>
+
 
       <div class="form-group">
         <label for="description">Description</label>
@@ -81,19 +76,17 @@
         </div>
       </div>
 
+
+
       <div class="form-group">
-        <label for="lat">Latitude</label>
+        <label for="idmus">Idsect</label>
         <div class="input-group">
-          <input id="lat" type="number" name="lat" class="form-control" placeholder="32.12324" ngModel>
+          <select [(ngModel)]="selected" name="idsect" placeholder="select" >
+            <option *ngFor="let sta of exeSel" [ngValue]="sta.idsect">{{sta.idsect}} {{sta.title}}</option>
+        </select>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="lon">Longitude</label>
-        <div class="input-group">
-          <input id="lon" type="number" name="lon" class="form-control" placeholder="32.12324" ngModel>
-        </div>
-      </div>
       <div class="border text-center">
         <button data-dismiss="modal" class="btn btn-info">Submit</button>
       </div>
@@ -121,12 +114,7 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="address">Address</label>
-        <div class="input-group">
-          <input id="address1" name="address1" class="form-control" disabled>
-        </div>
-      </div>
+
 
       <div class="form-group">
         <label for="description">Description</label>
@@ -142,19 +130,14 @@
         </div>
       </div>
 
+
       <div class="form-group">
-        <label for="lat">Latitude</label>
+        <label for="idmus">IdSect</label>
         <div class="input-group">
-          <input id="lat1" type="number" name="lat1" class="form-control" placeholder="32.12324" disabled>
+          <input type="text" name="idsect1" id="idsect1" class="form-control" disabled>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="lon">Longitude</label>
-        <div class="input-group">
-          <input id="lon1" type="number" name="lon1" class="form-control" placeholder="32.12324" disabled>
-        </div>
-      </div>
 
     </form>
   </div>
@@ -174,9 +157,9 @@
     <form #f="ngForm" (ngSubmit)="onEdit(f)" enctype="multipart/form-data" novalidate>
 
       <div class="form-group">
-        <label for="id">Id</label>
+        <label for="idsect">Id</label>
         <div class="input-group">
-          <input id="id" type="number" name="id" class="form-control" readonly>
+          <input id="idsect" type="number" name="idsect" class="form-control" readonly>
         </div>
       </div>
 
@@ -187,12 +170,7 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="address">Address</label>
-        <div class="input-group">
-          <input id="address" name="address" class="form-control" ngModel>
-        </div>
-      </div>
+
 
       <div class="form-group">
         <label for="description">Description</label>
@@ -210,19 +188,17 @@
         </div>
       </div>
 
+
+
       <div class="form-group">
-        <label for="lat">Latitude</label>
+        <label for="idmus">IdSect</label>
         <div class="input-group">
-          <input id="lat" type="number" name="lat" class="form-control" placeholder="32.12324" ngModel>
+          <select [(ngModel)]="selected" name="idsect" placeholder="select" >
+            <option *ngFor="let sta of exeSel" [ngValue]="sta.idsect">{{sta.idsect}} {{sta.title}}</option>
+        </select>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="lon">Longitude</label>
-        <div class="input-group">
-          <input id="lon" type="number" name="lon" class="form-control" placeholder="32.12324" ngModel>
-        </div>
-      </div>
       <div class="border text-center">
         <button data-dismiss="modal" class="btn btn-info">Submit</button>
       </div>
