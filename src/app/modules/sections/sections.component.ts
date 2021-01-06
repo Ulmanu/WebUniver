@@ -85,6 +85,7 @@ export class SectionsComponent implements OnInit {
     }
   }
 
+
   onFileSelected1(event) {
     this.ObjectFile = event.target.files[0];
     document.getElementById('image21').innerHTML = this.ObjectFile.name;
@@ -116,7 +117,7 @@ export class SectionsComponent implements OnInit {
     console.log(f.value.idmus);
     this.httpClient.post(url, body)
       .subscribe((result) => {
-        alert(result);
+
         this.ngOnInit(); //reload the table
       });
     this.modalService.dismissAll(); //dismiss the modal

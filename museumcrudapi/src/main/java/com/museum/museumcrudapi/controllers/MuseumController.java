@@ -1,5 +1,6 @@
 package com.museum.museumcrudapi.controllers;
 
+import com.museum.museumcrudapi.dto.MuseumDTO;
 import com.museum.museumcrudapi.dto.MuseumSectionJoinResponse;
 import com.museum.museumcrudapi.models.Museum;
 import com.museum.museumcrudapi.repositories.MuseumRepository;
@@ -51,10 +52,10 @@ public class MuseumController {
     return service.deleteMuseum(id);
   }
 
-//  @GetMapping("/getjoinmus/{idmus}")
-//  public List<MuseumSectionJoinResponse> getSectionJoin(@PathVariable int idmus) {
-//    return repository.getSectionByIdmus(idmus);
-//  }
+  @GetMapping("/getjoinmus")
+  public List<MuseumDTO> getSectionJoin() {
+    return repository.getSectionByIdmus();
+  }
 //
 //  @GetMapping("/getjoinmuss")
 //  public List<MuseumSectionJoinResponse> getSectionJoinNoParams() {
