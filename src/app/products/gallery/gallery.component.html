@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<app-menu></app-menu>
+
+<div class="container">
+
+  <div class="product-image">
+    <img src="{{exes.image}}" alt="" class="product-logo">
+
+
+  </div>
+
+  <div class="product-details">
+    <header>
+      <h1 class="title">{{exes.title}}</h1>
+      <span class="colorCat">{{exes.type}}</span>
+
+
+    </header>
+
+    <article>
+      <h5>Description</h5>
+      <p>
+        {{exes.description}}
+      </p>
+    </article>
+
+
+
+
+
+
+  </div>
+</div>
+<div class="container">
+  <hr class="style-one wow fadeInLeft" id="western">
+  <h2 class="text-center wow fadeIn">Exponats</h2>
+  <hr class="style-one wow fadeInRight">
+</div>
+<div class="container">
+  <div class="card-columns">
+
+    <div class="card view overlay zoom" *ngFor="let exe of exest" id="assumption-show" data-toggle="modal"
+      [attr.data-target]="'#modal' + exe.idexp">
+      <img class="card-img-top wow fadeInUp" src="{{exe.image}}" alt="Card image cap">
+      <div class="card-img-overlay" id="assumption">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" *ngFor="let exe of exest" [attr.id]="'modal' + exe.idexp" tabindex="-1" role="dialog"
+  aria-labelledby="modal1label" aria-hidden="true" (click)="click(exe.lat,exe.lon)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal1label">{{exe.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <p class="card-text">{{exe.description}}</p>
+        <p class="card-text">{{exe.price}}</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

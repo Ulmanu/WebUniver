@@ -40,6 +40,10 @@ import { PaymentsComponent } from './modules/payments/payments.component';
 import { TurtypesComponent } from './modules/turtypes/turtypes.component';
 import { SouvenirsComponent } from './modules/souvenirs/souvenirs.component';
 import { SouvenirsamountComponent } from './modules/souvenirsamount/souvenirsamount.component';
+import { MuseumComponent } from './products/museum/museum.component';
+import { SectionComponent } from './products/section/section.component';
+import { GalleryComponent } from './products/gallery/gallery.component';
+//import { ExponatComponent } from './products/exponat/exponat.component';
 // import { GallerysComponent } from './modules/gallerys/gallerys.component';
 // import { ExponatsComponent } from './modules/exponats/exponats.component';
 // import { UsersComponent } from './modules/users/users.component';
@@ -82,7 +86,11 @@ import { SouvenirsamountComponent } from './modules/souvenirsamount/souvenirsamo
     PaymentsComponent,
     TurtypesComponent,
     SouvenirsComponent,
-    SouvenirsamountComponent
+    SouvenirsamountComponent,
+    MuseumComponent,
+    SectionComponent,
+    GalleryComponent
+
 
   ],
   imports: [

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Pipe, PipeTransform } from '@angular/core';
+//import { Pipe, PipeTransform } from '@angular/core';
 export class Object {
 
 
@@ -57,9 +57,7 @@ export class RenmuseumComponent implements OnInit {
 
   click(lat, lon) {
     this.url = "https://maps.google.com/maps?q=" + lat + "," + lon + "&z=15&output=embed";
-
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-
   }
 
 

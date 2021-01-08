@@ -14,7 +14,7 @@
         <th>Description</th>
 
      <th>Price</th>
-
+          <th>Idmus</th>
 
         <th></th>
       </tr>
@@ -30,6 +30,7 @@
 
 
        <td><span>{{exe.price}}</span></td>
+       <td><span>{{exe.idmus}}</span></td>
         <td>
           <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
             <i class="fa fa-search"></i>Details</button>
@@ -73,7 +74,14 @@
           <input id="price" name="price" type="number" class="form-control" ngModel>
         </div>
       </div>
-
+      <div class="form-group">
+        <label for="idmus">Idmus</label>
+        <div class="input-group">
+          <select [(ngModel)]="selected4" name="idmus" placeholder="select" >
+            <option *ngFor="let sta of exeSel" [ngValue]="sta.id">{{sta.id}} {{sta.title}}</option>
+        </select>
+        </div>
+      </div>
 
 
       <div class="border text-center">
@@ -118,7 +126,12 @@
       </div>
 
 
-
+      <div class="form-group">
+        <label for="idmus">Idmus</label>
+        <div class="input-group">
+          <input id="idmus" name="date" type="text" class="form-control" disabled>
+        </div>
+      </div>
 
     </form>
   </div>
@@ -157,6 +170,16 @@
           <input id="price1" name="price" type="number" class="form-control" ngModel>
         </div>
       </div>
+
+
+    <div class="form-group">
+      <label for="idmus">Idmus</label>
+      <div class="input-group">
+        <select [(ngModel)]="selected4" name="idmus" placeholder="select" >
+          <option *ngFor="let sta of exeSel" [ngValue]="sta.id">{{sta.id}} {{sta.title}}</option>
+      </select>
+      </div>
+    </div>
 
       <div class="border text-center">
         <button data-dismiss="modal" class="btn btn-info">Submit</button>

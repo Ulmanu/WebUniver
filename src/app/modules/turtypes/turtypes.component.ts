@@ -64,13 +64,14 @@ export class TurtypesComponent implements OnInit {
   }
 
   getObjectsSel() {
-    this.httpClient.get<any>('http://localhost:9191/gallerys').subscribe(
+    this.httpClient.get<any>('http://localhost:9191/museums').subscribe(
       response => {
         console.log(response);
         this.exeSel = response;
       }
     );
   }
+
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -106,7 +107,7 @@ export class TurtypesComponent implements OnInit {
 
   onSubmit(f: NgForm) {
 
-    const url = 'http://localhost:9191/addturtype';
+    const url = 'http://localhost:9191/addturtype/'+f.value.idmus;
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -141,6 +142,7 @@ export class TurtypesComponent implements OnInit {
     document.getElementById('description').innerHTML = Object.description;
 
     document.getElementById('price').setAttribute('value', Object.price);
+    document.getElementById('idmus').setAttribute('value', Object.idmus.toString());
 
   }
 
@@ -177,7 +179,8 @@ console.log(this.temp);
       nametur: f.value.nametur,
       description: f.value.description,
 
-      price:f.value.price
+      price:f.value.price,
+      idmus:f.value.idmus
 
     };
     console.log(body);

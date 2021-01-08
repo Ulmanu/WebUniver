@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<app-menu></app-menu>
+
+<div class="container">
+
+  <div class="product-image">
+    <img src="{{exes.image}}" alt="" class="product-logo">
+
+
+  </div>
+
+  <div class="product-details">
+    <header>
+      <h1 class="title">{{exes.title}}</h1>
+      <span class="colorCat">{{exes.type}}</span>
+
+
+    </header>
+
+    <article>
+      <h5>Description</h5>
+      <p>
+        {{exes.description}}
+      </p>
+    </article>
+
+
+
+
+    <div class="controls">
+      <div class="color">
+        <h5>Gallery</h5>
+        <ul>
+          <li *ngFor="let exe of exeses">
+             <a href="/gal/{{exe.idgal}}">
+              <button type="button" class="btn btn-primary" data-toggle="modal">
+                {{exe.title}}
+              </button>
+            </a>
+
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

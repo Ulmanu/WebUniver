@@ -61,7 +61,7 @@ export class TursComponent implements OnInit {
 
   ngOnInit(): void {
     this.getObjects();
-    this.getObjectsSel();
+
     this.getObjectsSelUser();
     this.getObjectsSelSect();
     this.getObjectsSelType();
@@ -77,14 +77,7 @@ export class TursComponent implements OnInit {
     );
   }
 
-  getObjectsSel() {
-    this.httpClient.get<any>('http://localhost:9191/museums').subscribe(
-      response => {
-        console.log(response);
-        this.exeSel = response;
-      }
-    );
-  }
+
 
   getObjectsSelUser() {
     this.httpClient.get<any>('http://localhost:9191/users').subscribe(
@@ -148,7 +141,7 @@ export class TursComponent implements OnInit {
 
   onSubmit(f: NgForm) {
 
-    const url = 'http://localhost:9191/addtur/'+f.value.id+'/'+f.value.idmus+'/'+f.value.idsect+'/'+f.value.idturtype;
+    const url = 'http://localhost:9191/addtur/'+f.value.id+'/'+f.value.idturtype;
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -181,8 +174,8 @@ export class TursComponent implements OnInit {
 
 
     document.getElementById('id').setAttribute('value', Object.id.toString());
-    document.getElementById('idmus').setAttribute('value', Object.idmus.toString());
-    document.getElementById('idsect').setAttribute('value', Object.idsect.toString());
+
+
     document.getElementById('idturtype').setAttribute('value', Object.idturtype.toString());
 
   }
@@ -217,8 +210,8 @@ console.log(this.temp);
     const body = {
       idtur: this.temp.idtur,
       id:f.value.id,
-      idmus:f.value.idmus,
-      idsect:f.value.idsect,
+
+
       idturtype:f.value.idturtype,
       date:f.value.date
 

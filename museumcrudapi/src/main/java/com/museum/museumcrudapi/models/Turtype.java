@@ -46,11 +46,18 @@ public class Turtype {
   public void setPrice(float price) {
     this.price = price;
   }
+  public int getIdmus() {
+    return idmus;
+  }
 
+  public void setIdmus(int idmus) {
+    this.idmus = idmus;
+  }
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idturtype;
   private String nametur;
   private String description;
   private float price;
+  private int idmus;
 }

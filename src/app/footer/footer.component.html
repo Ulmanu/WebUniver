@@ -3,23 +3,61 @@
     <div class="container">
       <ul class="list-unstyled list-inline text-center py-2">
         <li class="list-inline-item">
-          <h5 class="mb-1">Subscribe to our newsletter</h5>
+          <h5 class="mb-1"></h5>
         </li>
         <li class="list-inline-item" id="footer-button">
-          <a href="#registerModal" data-toggle="modal" class="btn btn-outline-white">Subscribe!</a>
+          <a href="#registerModal" data-toggle="modal" class="btn btn-outline-white"
+            data-target="#exampleModal">Contact Us</a>
         </li>
       </ul>
+
       <div class="footer-copyright text-center">
         <p>
           &copy; 2020 Copyright:
           <a href="#brandName">The Online Museum</a>
         </p>
-<!--        <ul>-->
-<!--          <li class="text" *ngFor="let item of items | async">-->
-<!--            {{item.name}}-->
-<!--          </li>-->
-<!--        </ul>-->
+        <!--        <ul>-->
+        <!--          <li class="text" *ngFor="let item of items | async">-->
+        <!--            {{item.name}}-->
+        <!--          </li>-->
+        <!--        </ul>-->
       </div>
     </div>
   </footer>
+</div>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel"> UTM</h5>
+
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <p>Universitatea Tehnică a Moldovei a fost fondată în anul 1964, cu denumirea inițială „Institutul Politehnic din Chișinău”, în baza unor specialități inginerești și economice transferate de la Universitatea de Stat din Moldova. În primul an de studii (1964–65) universitatea avea 5140 de studenți (dintre care 2085 la secția de zi), grupați la 5 facultăți: Electrotehnică, Mecanică, Tehnologie, Construcții, Economie. Corpul didactic număra 278 profesori, dintre care numai 36 aveau grade didactice și titluri științifice.
+
+         În anii următori universitatea a crescut atît cantitativ, cît și calitativ, a devenit un mare centru de învățămînt, științific și de cultură.
+
+         În cei 43 de ani de existență au fost pregătiți peste 62.030 de specialiști.</p>
+       <p>Bd. Ştefan cel Mare, 168, MD-2004, Chișinău, Republica Moldova</p>
+       <p>
+         E-mail: admiterea@adm.utm.md
+         <br>
+         Tel: +373 78 83 90 49 / +373 22 23-51-85
+       </p>
+       <p>
+        <iframe width="450px" height="300px" frameBorder="0" src="https://maps.google.com/maps?q=47.030711,28.823857&z=15&output=embed" ></iframe>
+       </p>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+     </div>
+   </div>
+ </div>
 </div>

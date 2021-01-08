@@ -18,7 +18,8 @@ public class TurtypeService {
   @Autowired
   private TurtypeRepository repository;
 
-  public Turtype saveTurtype(Turtype turtype) {
+  public Turtype saveTurtype(Turtype turtype, Integer idmus) {
+    turtype.setIdmus(idmus);
     return repository.save(turtype);
   }
 
@@ -46,7 +47,7 @@ public class TurtypeService {
     existingmTurtype.setNametur(turtype.getNametur());
     existingmTurtype.setDescription(turtype.getDescription());
     existingmTurtype.setPrice(turtype.getPrice());
-
+    existingmTurtype.setIdmus(turtype.getIdmus());
     return repository.save(existingmTurtype);
   }
 }

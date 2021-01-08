@@ -31,21 +31,9 @@ public class Tur {
     this.id = iduser;
   }
 
-  public int getIdmus() {
-    return idmus;
-  }
 
-  public void setIdmus(int idmus) {
-    this.idmus = idmus;
-  }
 
-  public int getIdsect() {
-    return idsect;
-  }
 
-  public void setIdsect(int idsect) {
-    this.idsect = idsect;
-  }
 
   public Date getDate() {
     return date;
@@ -67,8 +55,8 @@ public class Tur {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idtur;
   private int id;
-  private int idmus;
-  private int idsect;
+
+
   private Date date;
   private int idturtype;
 

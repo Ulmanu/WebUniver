@@ -12,11 +12,10 @@ public class TurService {
   @Autowired
   private TurRepository repository;
 
-  public Tur saveTur(Tur tur, Integer id, Integer idmus, Integer idsect, Integer idturtype) {
+  public Tur saveTur(Tur tur, Integer id, Integer idturtype) {
 
     tur.setId(id);
-    tur.setIdmus(idmus);
-    tur.setIdsect(idsect);
+
     tur.setIdturtype(idturtype);
     return repository.save(tur);
   }
@@ -42,8 +41,7 @@ public class TurService {
 
   public Tur updateTur(Tur tur) {
     Tur existingmTur = repository.findById((tur.getIdtur())).orElse(null);
-    existingmTur.setIdmus(tur.getIdmus());
-    existingmTur.setIdsect(tur.getIdsect());
+
     existingmTur.setId(tur.getId());
     existingmTur.setDate(tur.getDate());
     existingmTur.setIdturtype(tur.getIdturtype());

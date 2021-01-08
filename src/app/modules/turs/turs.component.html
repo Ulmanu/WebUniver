@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="border">
     <button class="btn btn-md btn-outline-primary" (click)="open(content)">
@@ -11,10 +10,10 @@
         <th>ID</th>
         <th>Iduser</th>
 
-        <th>Idmus</th>
-        <th>Idsect</th>
-     <th> Date</th>
-     <th>Idturtype</th>
+
+
+        <th> Date</th>
+        <th>Idturtype</th>
 
 
         <th></th>
@@ -24,8 +23,8 @@
       <tr *ngFor="let exe of exes">
         <td><span>{{exe.idtur}}</span></td>
         <td><span>{{exe.id}}</span></td>
-        <td><span>{{exe.idmus}}</span></td>
-        <td><span>{{exe.idsect}}</span></td>
+
+
         <td><span>{{exe.date}}</span></td>
         <td><span>{{exe.idturtype}}</span></td>
         <td>
@@ -34,7 +33,7 @@
           <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, exe)">
             <i class="fa fa-edit"></i>Edit</button>
           <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, exe)">
-            <i class="fa fa-remove" ></i>Delete</button>
+            <i class="fa fa-remove"></i>Delete</button>
         </td>
       </tr>
     </tbody>
@@ -54,44 +53,28 @@
 
 
 
-
       <div class="form-group">
-        <label for="idmus">Idsect</label>
+        <label for="idmus">Idturtype</label>
         <div class="input-group">
-          <select [(ngModel)]="selected1" name="idsect" placeholder="select" >
-            <option *ngFor="let stasect of exeSelsect" [ngValue]="stasect.idsect">{{stasect.idsect}} {{stasect.title}}</option>
-        </select>
+          <select [(ngModel)]="selected2" name="idturtype" placeholder="select">
+            <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idturtype">{{statype.idturtype}}
+              {{statype.nametur}}</option>
+          </select>
         </div>
       </div>
-
-
-      <div class="form-group">
-            <label for="idmus">Idturtype</label>
-            <div class="input-group">
-              <select [(ngModel)]="selected2" name="idturtype" placeholder="select" >
-                <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idturtype">{{statype.idturtype}} {{statype.nametur}}</option>
-            </select>
-            </div>
-          </div>
 
 
       <div class="form-group">
         <label for="idmus">IdUser</label>
         <div class="input-group">
-          <select [(ngModel)]="selected3" name="id" placeholder="select" >
-            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}</option>
-        </select>
+          <select [(ngModel)]="selected3" name="id" placeholder="select">
+            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}
+            </option>
+          </select>
         </div>
       </div>
 
-    <div class="form-group">
-        <label for="idmus">Idmus</label>
-        <div class="input-group">
-          <select [(ngModel)]="selected4" name="idmus" placeholder="select" >
-            <option *ngFor="let sta of exeSel" [ngValue]="sta.id">{{sta.id}} {{sta.title}}</option>
-        </select>
-        </div>
-      </div>
+
 
 
 
@@ -129,19 +112,11 @@
 
 
       <div class="form-group">
-        <label for="idmus">Idsect</label>
+        <label for="idmus">Idturtype</label>
         <div class="input-group">
-          <input id="idsect" name="date" type="text" class="form-control" disabled>
+          <input id="idturtype" name="date" type="text" class="form-control" disabled>
         </div>
       </div>
-
-
-      <div class="form-group">
-            <label for="idmus">Idturtype</label>
-            <div class="input-group">
-              <input id="idturtype" name="date" type="text" class="form-control" disabled>
-            </div>
-          </div>
 
 
       <div class="form-group">
@@ -151,12 +126,7 @@
         </div>
       </div>
 
-    <div class="form-group">
-        <label for="idmus">Idmus</label>
-        <div class="input-group">
-          <input id="idmus" name="date" type="text" class="form-control" disabled>
-        </div>
-      </div>
+
 
 
 
@@ -185,43 +155,29 @@
   <div class="modal-body">
     <form #f="ngForm" (ngSubmit)="onEdit(f)" enctype="multipart/form-data" novalidate>
 
+
+
       <div class="form-group">
-        <label for="idmus">Idsect</label>
+        <label for="idmus">Idturtype</label>
         <div class="input-group">
-          <select [(ngModel)]="selected1" name="idsect" placeholder="select" >
-            <option *ngFor="let stasect of exeSelsect" [ngValue]="stasect.idsect">{{stasect.idsect}} {{stasect.title}}</option>
-        </select>
+          <select [(ngModel)]="selected2" name="idturtype" placeholder="select">
+            <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idturtype">{{statype.idturtype}}
+              {{statype.nametur}}</option>
+          </select>
         </div>
       </div>
-
-
-      <div class="form-group">
-            <label for="idmus">Idturtype</label>
-            <div class="input-group">
-              <select [(ngModel)]="selected2" name="idturtype" placeholder="select" >
-                <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idturtype">{{statype.idturtype}} {{statype.nametur}}</option>
-            </select>
-            </div>
-          </div>
 
 
       <div class="form-group">
         <label for="idmus">IdUser</label>
         <div class="input-group">
-          <select [(ngModel)]="selected3" name="id" placeholder="select" >
-            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}</option>
-        </select>
+          <select [(ngModel)]="selected3" name="id" placeholder="select">
+            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}
+            </option>
+          </select>
         </div>
       </div>
 
-    <div class="form-group">
-        <label for="idmus">Idmus</label>
-        <div class="input-group">
-          <select [(ngModel)]="selected4" name="idmus" placeholder="select" >
-            <option *ngFor="let sta of exeSel" [ngValue]="sta.id">{{sta.id}} {{sta.title}}</option>
-        </select>
-        </div>
-      </div>
 
 
 

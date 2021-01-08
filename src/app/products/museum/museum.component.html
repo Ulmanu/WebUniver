@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+<app-menu></app-menu>
+
+<div class="container">
+
+  <div class="product-image">
+    <img src="{{exes.image}}" alt="" class="product-logo">
+
+
+  </div>
+
+  <div class="product-details">
+    <header>
+      <h1 class="title">{{exes.title}}</h1>
+      <span class="colorCat">{{exes.address}}</span>
+      <div class="price" (click)="click(exes.lat,exes.lon)">
+        <span class="current">Latitude:{{exes.lat}}</span>
+        <span class="current">Longitude:{{exes.lon}}</span>
+      </div>
+
+    </header>
+    <article>
+      <p>
+        <iframe width="450px" height="300px" frameBorder="0" [src]="urlSafe" style="display: none;"></iframe>
+      </p>
+    </article>
+    <article>
+      <h5>Description</h5>
+      <p>
+        {{exes.description}}
+      </p>
+    </article>
+    <div class="controls">
+
+      <div class="size">
+        <h5>tours</h5>
+        <!-- [(ngModel)]="selected4" -->
+        <select  name="idmus" placeholder="select">
+          <option *ngFor="let sta of exest" [ngValue]="sta.id">{{sta.nametur}} {{sta.price}}</option>
+
+        </select>
+      </div>
+      <div class="qty">
+        <h5>tickets</h5>
+        <input type="number">
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="color">
+        <h5>Sections</h5>
+        <ul>
+          <li *ngFor="let exe of exeses">
+            <a href="/sec/{{exe.idsect}}">
+              <button type="button" class="btn btn-primary" data-toggle="modal" >
+                {{exe.title}}
+              </button>
+            </a>
+
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="color">
+        <h5>Tours</h5>
+        <ul>
+          <li *ngFor="let exef of exest">
+            <button type="button" class="btn btn-primary" data-toggle="modal"  [attr.data-target]="'#modal' + exef.nametur">
+              {{exef.nametur}}
+            </button>
+
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <button type="button">
+        <img src="http://co0kie.github.io/codepen/nike-product-page/cart.png" alt="">
+        <span>add to cart</span>
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+
+ <!-- Modal -->
+ <div class="modal fade" *ngFor="let exef of exest" [attr.id]="'modal' + exef.nametur"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel"> {{exef.nametur}}</h5>
+
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <p>{{exef.description}}</p>
+       <p>{{exef.price}}</p>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+     </div>
+   </div>
+ </div>
+</div>
+
+<app-footer></app-footer>

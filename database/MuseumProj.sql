@@ -195,10 +195,12 @@ CREATE TABLE `turtype` (
    nametur varchar(100),
    description text,
    price float,
-   PRIMARY KEY (`idturtype`)
+    `idmus` bigint,
+   PRIMARY KEY (`idturtype`),
+   foreign key (`idmus`) references `museum`(`id`) ON UPDATE CASCADE ON delete CASCADE
  
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-insert into turtype (idturtype, nametur, description,price) values(1,'scsdcsd','jdsfknsjdnf',2300);
+insert into turtype (idturtype, nametur, description,price,idmus) values(1,'scsdcsd','jdsfknsjdnf',2300,1);
 --
 -- Table structure for table `tur`
 --
@@ -207,14 +209,13 @@ DROP TABLE IF EXISTS `tur`;
 CREATE TABLE `tur` (
   `idtur` bigint NOT NULL AUTO_INCREMENT,
    `id` bigint,
-   `idmus` bigint,
-   idsect bigint,
+  
   `date` date,
   idturtype bigint,
    PRIMARY KEY (`idtur`),
    foreign key (`id`) references `user`(`id`)ON UPDATE CASCADE ON delete CASCADE,
-	foreign key (`idmus`) references `museum`(`id`) ON UPDATE CASCADE ON delete CASCADE,
-    foreign key (idsect) references section(idsect) ON UPDATE CASCADE ON delete CASCADE,
+	
+  
       foreign key (idturtype) references turtype(idturtype) ON UPDATE CASCADE ON delete CASCADE
  
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

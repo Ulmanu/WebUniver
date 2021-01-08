@@ -27,9 +27,9 @@ public class TurtypeController {
   private EntityManager em;
 
 
-  @PostMapping("/addturtype")
-  public Turtype addturtype(@RequestBody Turtype turtype) {
-    return service.saveTurtype(turtype);
+  @PostMapping("/addturtype/{idmus}")
+  public Turtype addturtype(@RequestBody Turtype turtype,@PathVariable int idmus) {
+    return service.saveTurtype(turtype,idmus);
   }
 
   @PostMapping("/addturtypes")
