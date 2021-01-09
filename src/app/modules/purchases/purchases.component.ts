@@ -18,7 +18,7 @@ export class Object {
   idtur: any;
   idsouvam: any;
   idpur: any;
-
+  qty:number;
 
   constructor(
    public id: number,
@@ -30,7 +30,8 @@ export class Object {
    public lon: number,
    public idsect:number,
    public idmus:number,
-   public type:string
+   public type:string,
+   qty:number
 
   ) {
   }
@@ -156,7 +157,8 @@ export class PurchasesComponent implements OnInit {
     });
 
     const body = {
-     date:f.value.date
+     date:f.value.date,
+     qty:f.value.qty
     };
     console.log(body);
     this.uploadFileService.uploadFiles(this.ObjectFile);
@@ -180,6 +182,7 @@ export class PurchasesComponent implements OnInit {
 
     document.getElementById('date').setAttribute('value', Object.date);
 
+    document.getElementById('qty').setAttribute('value', Object.qty.toString());
 
     document.getElementById('id').setAttribute('value', Object.id.toString());
 
@@ -219,7 +222,8 @@ console.log(this.temp);
       id:f.value.id,
       idsouvam:f.value.idsouvam,
 
-      date:f.value.date
+      date:f.value.date,
+      qty:f.value.qty
 
 
 

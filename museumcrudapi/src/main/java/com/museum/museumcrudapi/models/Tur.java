@@ -60,4 +60,24 @@ public class Tur {
   private Date date;
   private int idturtype;
 
+  public int getQty() {
+    return qty;
+  }
+
+  public void setQty(int qty) {
+    this.qty = qty;
+  }
+
+  private int qty;
+
+  public double getCost() {
+    return cost;
+  }
+
+  public void setCost(double cost) {
+    this.cost = cost;
+  }
+
+  private double cost;
+
 }

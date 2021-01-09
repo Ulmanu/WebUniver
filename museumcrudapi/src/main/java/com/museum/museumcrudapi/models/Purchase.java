@@ -59,8 +59,23 @@ public class Purchase {
 
   private int idsouvam;
   private Date date;
+  private int qty;
 
+  public double getCost() {
+    return cost;
+  }
 
+  public void setCost(double cost) {
+    this.cost = cost;
+  }
 
+  private double cost;
 
+  public int getQty() {
+    return qty;
+  }
+
+  public void setQty(int qty) {
+    this.qty = qty;
+  }
 }

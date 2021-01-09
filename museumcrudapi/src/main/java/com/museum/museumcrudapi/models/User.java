@@ -84,4 +84,34 @@ public class User {
 
   private String role;
 
+  private double income;
+
+  public double getIncome() {
+    return income;
+  }
+
+  public void setIncome(double income) {
+    this.income = income;
+  }
+
+  public double getOutcome() {
+    return outcome;
+  }
+
+  public void setOutcome(double outcome) {
+    this.outcome = outcome;
+  }
+
+  private double outcome;
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  private String status;
+
 }

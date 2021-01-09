@@ -55,4 +55,24 @@ public class Souvenirs {
   private float price;
   private String image;
 
+  public int getQty() {
+    return qty;
+  }
+
+  public void setQty(int qty) {
+    this.qty = qty;
+  }
+
+  private int qty;
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  private String status;
+
 }

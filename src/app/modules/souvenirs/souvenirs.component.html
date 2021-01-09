@@ -14,6 +14,8 @@
 
         <th>Price</th>
         <th>Image</th>
+        <th>QTY</th>
+        <th>Status</th>
 
         <th></th>
       </tr>
@@ -24,7 +26,10 @@
         <td><span>{{exe.name}}</span></td>
 
         <td><span>{{exe.price}}</span></td>
+
         <td><span><img src="{{exe.image}}" alt=""></span></td>
+        <td><span>{{exe.qty}}</span></td>
+        <td><span>{{exe.status}}</span></td>
         <td>
           <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
             <i class="fa fa-search"></i>Details</button>

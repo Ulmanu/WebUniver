@@ -14,10 +14,14 @@ import java.util.List;
 public class PurchaseService {
   @Autowired
   private PurchaseRepository repository;
+  @Autowired
+  private SouvenirsService serv;
+
 
   public Purchase savePurchase(Purchase purchase, Integer id, Integer idsouv) {
     purchase.setId(id);
     purchase.setIdsouvam(idsouv);
+    purchase.setCost(serv.getSouvenirssById(idsouv).getPrice()*purchase.getQty());
     return repository.save(purchase);
   }
 
@@ -34,7 +38,6 @@ public class PurchaseService {
   }
 
 
-
   public String deletePurchase(int id) {
     repository.deleteById(id);
     return "product removed !!" + id;
@@ -46,7 +49,7 @@ public class PurchaseService {
 
     existingmPurchase.setIdsouvam(purchase.getIdsouvam());
     existingmPurchase.setDate(purchase.getDate());
-
+    existingmPurchase.setQty(purchase.getQty());
 
     return repository.save(existingmPurchase);
   }

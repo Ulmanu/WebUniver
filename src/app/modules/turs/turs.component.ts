@@ -16,6 +16,7 @@ export class Object {
   idsuva: any;
   date: string;
   idtur: any;
+  qty:any;
 
 
   constructor(
@@ -28,7 +29,8 @@ export class Object {
    public lon: number,
    public idsect:number,
    public idmus:number,
-   public type:string
+   public type:string,
+   qty:any
 
   ) {
   }
@@ -148,7 +150,8 @@ export class TursComponent implements OnInit {
     });
 
     const body = {
-     date:f.value.date
+     date:f.value.date,
+     qty:f.value.qty
     };
     console.log(body);
     this.uploadFileService.uploadFiles(this.ObjectFile);
@@ -171,7 +174,7 @@ export class TursComponent implements OnInit {
     });
 
     document.getElementById('date').setAttribute('value', Object.date);
-
+    document.getElementById('qty').setAttribute('value', Object.qty);
 
     document.getElementById('id').setAttribute('value', Object.id.toString());
 
@@ -213,8 +216,8 @@ console.log(this.temp);
 
 
       idturtype:f.value.idturtype,
-      date:f.value.date
-
+      date:f.value.date,
+      qty:f.value.qty
 
 
 

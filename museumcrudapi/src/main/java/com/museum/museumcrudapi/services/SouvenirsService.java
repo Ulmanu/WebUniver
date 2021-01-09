@@ -11,8 +11,11 @@ import java.util.List;
 public class SouvenirsService {
   @Autowired
   private SouvenirsRepository repository;
+  @Autowired
+  private SouveniramountRepository rep;
 
   public Souvenirs saveSouvenirs(Souvenirs souvenirs) {
+    ;
     return repository.save(souvenirs);
   }
 

@@ -19,9 +19,7 @@ import java.util.List;
 public class UserController {
   @Autowired
   private UserService service;
-  @Autowired
-  private UserRepository sectionRepository;
-  private EntityManager em;
+
 
 
   @PostMapping("/adduser")

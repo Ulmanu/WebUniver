@@ -14,7 +14,8 @@
         <th>Isuvam</th>
 
      <th> Date</th>
-
+     <th> QTY</th>
+     <th>Cost</th>
 
 
         <th></th>
@@ -27,7 +28,9 @@
         <td><span>{{exe.idsouvam}}</span></td>
 
         <td><span>{{exe.date}}</span></td>
+        <td><span>{{exe.qty}}</span></td>
 
+    <td><span>{{exe.cost}}</span></td>
         <td>
           <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
             <i class="fa fa-search"></i>Details</button>
@@ -78,6 +81,12 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label for="idmus">QTY</label>
+        <div class="input-group">
+          <input id="qty" name="qty" type="number" class="form-control" ngModel>
+        </div>
+      </div>
 
 
 
@@ -132,6 +141,12 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label for="idmus">QTY</label>
+        <div class="input-group">
+          <input id="qty" name="qty" type="text" class="form-control" disabled>
+        </div>
+      </div>
 
     </form>
   </div>
@@ -174,6 +189,13 @@
         <label for="idmus">Date</label>
         <div class="input-group">
           <input id="date" name="date" type="date" class="form-control" ngModel>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="idmus">QTY</label>
+        <div class="input-group">
+          <input id="qty" name="qty" type="number" class="form-control" ngModel>
         </div>
       </div>
       <div class="border text-center">

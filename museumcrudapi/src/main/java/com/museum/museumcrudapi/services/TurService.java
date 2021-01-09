@@ -11,12 +11,13 @@ import java.util.List;
 public class TurService {
   @Autowired
   private TurRepository repository;
+  @Autowired
+  private TurtypeService serv;
 
   public Tur saveTur(Tur tur, Integer id, Integer idturtype) {
-
     tur.setId(id);
-
     tur.setIdturtype(idturtype);
+    tur.setCost(serv.getTurtypesById(idturtype).getPrice() * tur.getQty());
     return repository.save(tur);
   }
 
@@ -33,7 +34,6 @@ public class TurService {
   }
 
 
-
   public String deleteTur(int id) {
     repository.deleteById(id);
     return "product removed !!" + id;
@@ -45,6 +45,7 @@ public class TurService {
     existingmTur.setId(tur.getId());
     existingmTur.setDate(tur.getDate());
     existingmTur.setIdturtype(tur.getIdturtype());
+    existingmTur.setQty(tur.getQty());
     return repository.save(existingmTur);
   }
 }
