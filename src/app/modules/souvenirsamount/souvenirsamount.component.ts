@@ -198,7 +198,7 @@ console.log(this.temp);
   deleteId: string;
 
   openDelete(targetModal, Object: Object) {
-    this.deleteId = Object.idturtype.toString();
+    this.deleteId = Object.idsuva.toString();
     this.modalService.open(targetModal, {
       backdrop: 'static',
       size: 'lg'
@@ -206,7 +206,7 @@ console.log(this.temp);
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:9191/deleteturtype/' + this.deleteId;
+    const deleteURL = 'http://localhost:9191/deletesouveniramount/' + this.deleteId;
     this.httpClient.delete(deleteURL)
       .subscribe((result) => {
 

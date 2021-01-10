@@ -31,19 +31,26 @@
       </p>
     </article>
     <div class="controls">
-
+      <form #f="ngForm" (ngSubmit)="submit(f)" enctype="multipart/form-data" novalidate>
       <div class="size">
         <h5>tours</h5>
-        <!-- [(ngModel)]="selected4" -->
-        <select  name="idmus" placeholder="select">
-          <option *ngFor="let sta of exest" [ngValue]="sta.id">{{sta.nametur}} {{sta.price}}</option>
+
+        <select  [(ngModel)]="selected2" name="idturtype" placeholder="select" style="width: 100%;">
+          <option *ngFor="let sta of exest" [ngValue]="sta.idturtype">{{sta.nametur}} {{sta.price}}</option>
 
         </select>
+        <hr>
       </div>
       <div class="qty">
         <h5>tickets</h5>
-        <input type="number">
+        <input type="number" name="qty" class="form-control" max="100" ngModel placeholder="1">
       </div>
+<hr>
+      <button  class="cart"  type="submit"  >
+        <img src="http://co0kie.github.io/codepen/nike-product-page/cart.png" alt="">
+        <span>add to cart</span>
+      </button>
+      </form>
     </div>
 
     <div class="controls">
@@ -80,10 +87,7 @@
       </div>
     </div>
     <div class="footer">
-      <button type="button">
-        <img src="http://co0kie.github.io/codepen/nike-product-page/cart.png" alt="">
-        <span>add to cart</span>
-      </button>
+
 
     </div>
   </div>

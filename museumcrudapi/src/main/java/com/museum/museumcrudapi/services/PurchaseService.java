@@ -16,10 +16,13 @@ public class PurchaseService {
   private PurchaseRepository repository;
   @Autowired
   private SouvenirsService serv;
+  @Autowired
+  private UserService user;
 
 
   public Purchase savePurchase(Purchase purchase, Integer id, Integer idsouv) {
-    if (serv.getSouvenirssById(idsouv).getStatus().equalsIgnoreCase("unavailable")) {
+    if (serv.getSouvenirssById(idsouv).getStatus().equalsIgnoreCase("unavailable") ||
+    user.getUsersById(id).getStatus().equalsIgnoreCase("unavailable")) {
       return null;
 
     } else {
@@ -57,7 +60,7 @@ public class PurchaseService {
     existingmPurchase.setIdsouvam(purchase.getIdsouvam());
     existingmPurchase.setDate(purchase.getDate());
     existingmPurchase.setQty(purchase.getQty());
-
+    existingmPurchase.setCost(serv.getSouvenirssById(purchase.getIdsouvam()).getPrice() * purchase.getQty());
     return repository.save(existingmPurchase);
   }
 }

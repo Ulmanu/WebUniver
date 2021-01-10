@@ -90,7 +90,7 @@
       <div class="form-group">
         <label for="idmus">QTY</label>
         <div class="input-group">
-          <input id="qty" name="qty" type="number" class="form-control" ngModel>
+          <input id="qty" name="qty" type="number" [range]="[1, 50]" class="form-control" ngModel>
         </div>
       </div>
 
@@ -205,7 +205,7 @@
       <div class="form-group">
         <label for="idmus">QTY</label>
         <div class="input-group">
-          <input id="qty" name="qty" type="number" class="form-control" ngModel>
+          <input id="qty" name="qty" type="number" max="100" class="form-control" ngModel>
         </div>
       </div>
       <div class="border text-center">

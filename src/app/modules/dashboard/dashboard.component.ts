@@ -231,6 +231,8 @@ export class DashboardComponent implements OnInit {
       .subscribe((result) => {
 
       });
+      this.tokenStorage.signOut();
+      this.router.navigate(['/']);
     this.modalService.dismissAll(); //dismiss the modal
     this.ngOnInit(); //reload the table
 

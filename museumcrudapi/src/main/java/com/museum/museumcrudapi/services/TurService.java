@@ -13,12 +13,21 @@ public class TurService {
   private TurRepository repository;
   @Autowired
   private TurtypeService serv;
+  @Autowired
+  private UserService user;
 
   public Tur saveTur(Tur tur, Integer id, Integer idturtype) {
-    tur.setId(id);
-    tur.setIdturtype(idturtype);
-    tur.setCost(serv.getTurtypesById(idturtype).getPrice() * tur.getQty());
-    return repository.save(tur);
+
+    if (user.getUsersById(id).getStatus().equalsIgnoreCase("unavailable")) {
+      return null;
+
+    } else {
+      tur.setId(id);
+      tur.setIdturtype(idturtype);
+      tur.setCost(serv.getTurtypesById(idturtype).getPrice() * tur.getQty());
+      return repository.save(tur);
+    }
+
   }
 
   public List<Tur> saveTurs(List<Tur> turs) {

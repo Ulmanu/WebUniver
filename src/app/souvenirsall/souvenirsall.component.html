@@ -46,19 +46,20 @@
         <p class="card-text">Status:{{exe.status}}</p>
 
         <p>Price:{{exe.price}}</p>
-        <p>Qty:{{exe.qty}}</p>
-
-
-        <a href="/muz/{{exe.id}}">
-          <button type="button" id="details">
-
-            <span>
-              Details
-            </span>
+        <p>Qty available:{{exe.qty}}</p>
+        <form #f="ngForm" (ngSubmit)="submit(f,exe.idsuv)" enctype="multipart/form-data" novalidate>
+          <p>
+            QTY: <input type="number" name="qty" max="100" class="form-control" ngModel placeholder="1">
+          </p>
+          <button  class="cart"  type="submit"  >
+            <img src="http://co0kie.github.io/codepen/nike-product-page/cart.png" alt="">
+            <span>add to cart</span>
           </button>
-        </a>
+        </form>
       </div>
       <div class="modal-footer">
+
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 export class Object {
 
 
@@ -36,6 +38,7 @@ export class MuseumComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute,
+    private tokenStorage: TokenStorageService,
     public sanitizer: DomSanitizer) {
     this.route.params.subscribe(params =>
       this.id = params['id']);
@@ -82,4 +85,27 @@ export class MuseumComponent implements OnInit {
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
     document.getElementsByTagName('iframe')[0].style.display = "flex";
   }
+
+  submit(f: NgForm)
+  {
+    const url = 'http://localhost:9191/addtur/'+this.tokenStorage.getUser().id+'/'+f.value.idturtype;
+    var headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    const body = {
+     date:new Date(),
+     qty:f.value.qty
+    };
+    console.log(body);
+
+    this.httpClient.post(url, body)
+      .subscribe((result) => {
+        alert(result);
+
+      });
+
+  }
+
 }

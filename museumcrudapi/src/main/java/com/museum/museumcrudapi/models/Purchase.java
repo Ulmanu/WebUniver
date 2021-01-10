@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
@@ -59,6 +60,7 @@ public class Purchase {
 
   private int idsouvam;
   private Date date;
+
   private int qty;
 
   public double getCost() {

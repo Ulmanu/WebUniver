@@ -134,7 +134,7 @@ CREATE TABLE `user`
     role     varchar(100),
     income   double       default 0.00,
     outcome  double       default 0.00,
-    status   varchar(200) default 'null',
+    status   varchar(200) default 'available',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -144,8 +144,7 @@ CREATE TABLE `user`
 -- insert into `user` (name, username,password, email,image,role) values
 -- (''Victor Ungureanu'',''fdfd'',''a@dfsd.com'',''images/museums/istorie.jpg'',''admin'',''jj''),
 -- (''Victor Ungureanu'',''fdfd'',''ad@dfsd.com'',''images/museums/istorie.jpg'','''',''hh'');
-select *
-from `user`;
+
 
 
 --
@@ -182,18 +181,15 @@ CREATE TABLE `souvenirs`
     `name`  varchar(100) NOT NULL unique,
     price   float,
     image   mediumtext,
-    qty     int          default 0,
-    status  varchar(200) default 'null',
+    qty     int          default 1000 ,
+    status  varchar(200) default 'available',
     PRIMARY KEY (`idsuv`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
-insert into `souvenirs` (name, price, image)
-values ('Teddy', 1000, 'fdgdfg');
-select *
-from `souvenirs`;
+
 
 --
 -- Table structure for table `souvenirsamount`
@@ -212,10 +208,7 @@ CREATE TABLE `souvenirsamount`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
-insert into `souvenirsamount` (amount, idsuv)
-values (1000, 1);
-select *
-from `souvenirsamount`;
+
 
 --
 -- Table structure for table `souvenirsamount`
@@ -234,10 +227,6 @@ CREATE TABLE `souvenirsamount`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
-insert into `souvenirsamount` (amount, idsuv)
-values (1000, 1);
-select *
-from `souvenirsamount`;
 
 --
 -- Table structure for table `turtype`
@@ -258,8 +247,7 @@ CREATE TABLE `turtype`
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
-insert into turtype (idturtype, nametur, description, price, idmus)
-values (1, 'scsdcsd', 'jdsfknsjdnf', 2300, 1);
+
 --
 -- Table structure for table `tur`
 --
@@ -270,7 +258,7 @@ CREATE TABLE `tur`
     `idtur`   bigint NOT NULL AUTO_INCREMENT,
     `id`      bigint,
     `date`    date,
-    qty       int,
+    qty       int CHECK(qty BETWEEN 1 AND 50),
     idturtype bigint,
     cost      double,
     PRIMARY KEY (`idtur`),
@@ -294,7 +282,7 @@ CREATE TABLE `purchase`
     `id`     bigint,
     idsouvam bigint,
     `date`   date,
-    qty      int    default 0,
+    qty      int    default 0 CHECK(qty BETWEEN 1 AND 50),
     cost     double default 0.00,
     PRIMARY KEY (`idpur`),
     foreign key (`id`) references `user` (`id`) ON UPDATE CASCADE ON delete CASCADE,
@@ -339,6 +327,66 @@ alter table user_roles
 DELIMITER $$
 
 CREATE TRIGGER
+    souvenir_amountqty
+    AFTER INSERT
+    ON
+       souvenirsamount
+    FOR EACH ROW
+BEGIN
+
+
+    declare finadl int;
+
+
+    update souvenirs
+    set souvenirs.qty=(select sum(amount) from museums.souvenirsamount where souvenirsamount.idsuv = souvenirs.idsuv)
+    where idsuv = NEW.idsuv;
+
+
+
+END;
+
+CREATE TRIGGER
+    souvenir_amountqty2
+    AFTER UPDATE
+    ON
+        souvenirsamount
+    FOR EACH ROW
+BEGIN
+
+
+    declare finadl int;
+
+
+    update souvenirs
+    set souvenirs.qty=(select sum(amount) from museums.souvenirsamount where souvenirsamount.idsuv = souvenirs.idsuv)
+    where idsuv = NEW.idsuv;
+
+
+
+END;
+
+CREATE TRIGGER
+    souvenir_amountqty3
+    AFTER DELETE
+    ON
+        souvenirsamount
+    FOR EACH ROW
+BEGIN
+
+
+    declare finadl int;
+
+
+    update souvenirs
+    set souvenirs.qty=0
+    where idsuv = OLD.idsuv;
+
+
+
+END;
+
+CREATE TRIGGER
     souvenir_amount
     AFTER INSERT
     ON
@@ -346,7 +394,7 @@ CREATE TRIGGER
     FOR EACH ROW
 BEGIN
 
- 
+
     declare finadl int;
 
 
@@ -408,7 +456,7 @@ CREATE TRIGGER
 BEGIN
 
     declare finadl int;
-
+    declare pur int;
 
     update souvenirs
     set souvenirs.qty=(select sum(amount) from museums.souvenirsamount where souvenirsamount.idsuv = souvenirs.idsuv) -
@@ -416,8 +464,16 @@ BEGIN
     where idsuv = OLD.idsouvam;
 
     set finadl = (select sum(qty) from souvenirs where idsuv = OLD.idsouvam);
+    set pur=(select sum(qty) from purchase where idsouvam = OLD.idsouvam );
 
-    if (finadl < 0) then
+    if(pur is null)then
+        update souvenirs
+            set qty=(select sum(amount) from museums.souvenirsamount where souvenirsamount.idsuv = souvenirs.idsuv)
+        where idsuv = OLD.idsouvam ;
+    end if;
+
+
+    if (finadl < 0 ) then
         update souvenirs
         set status='unavailable'
         where idsuv = OLD.idsouvam;
@@ -438,10 +494,81 @@ CREATE TRIGGER
     FOR EACH ROW
 BEGIN
 
-
+    declare rez int;
     update user
     set user.income=(select sum(amount) from payment where id = iduser)
     where id = NEW.iduser;
+
+    set rez=(select (income-outcome) from user  where id =NEW.iduser);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = NEW.iduser;
+    else
+        update user
+        set status='available'
+        where id = NEW.iduser;
+    end if;
+END;
+
+
+CREATE TRIGGER
+    user_income2
+    AFTER UPDATE
+    ON
+        payment
+    FOR EACH ROW
+BEGIN
+
+    declare rez int;
+    update user
+    set user.income=(select sum(amount) from payment where id = iduser)
+    where id = NEW.iduser;
+
+    set rez=(select (income-outcome) from user  where id =NEW.iduser);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = NEW.iduser;
+    else
+        update user
+        set status='available'
+        where id = NEW.iduser;
+    end if;
+END;
+
+
+CREATE TRIGGER
+    user_income3
+    AFTER DELETE
+    ON
+        payment
+    FOR EACH ROW
+BEGIN
+    declare rez int;
+    declare pur int;
+    update user
+    set user.income=(select sum(amount) from payment where id = iduser)
+    where id = OLD.iduser;
+
+    set pur=(select income from user where id = OLD.iduser);
+
+    if(pur is null)then
+        update user
+        set income=0
+        where id = OLD.iduser;
+    end if;
+
+    set rez=(select (income-outcome) from user  where id =OLD.iduser);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = OLD.iduser;
+    else
+        update user
+        set status='available'
+        where id = OLD.iduser;
+    end if;
 END;
 
 
@@ -453,12 +580,87 @@ CREATE TRIGGER
         purchase
     FOR EACH ROW
 begin
-
+    declare rez long;
     update user
-    set outcome=(select sum(cost) from museums.purchase where purchase.id = user.id)
+    set outcome=user.outcome+(select cost from museums.purchase where  purchase.idpur=NEW.idpur)
     where id = NEW.id;
 
+    set rez=(select (income-outcome) from user  where id =NEW.id);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = NEW.id;
+    else
+        update user
+        set status='available'
+        where id = NEW.id;
+    end if;
+
 end;
+
+CREATE TRIGGER
+    user_outcome11
+    AFTER UPDATE
+    ON
+        purchase
+    FOR EACH ROW
+begin
+    declare rez long;
+    update user
+    set outcome=user.outcome+(select cost from museums.purchase where  purchase.idpur=NEW.idpur)
+    where id = NEW.id;
+
+
+    set rez=(select (income-outcome) from user  where id =NEW.id);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = NEW.id;
+    else
+        update user
+        set status='available'
+        where id = NEW.id;
+    end if;
+
+end;
+
+
+CREATE TRIGGER
+    user_outcome111
+    AFTER DELETE
+    ON
+        purchase
+    FOR EACH ROW
+begin
+    declare rez long;
+    declare pur int;
+    update user
+    set outcome=user.outcome-(select cost from museums.purchase where  purchase.idpur=OLD.idpur)
+    where id = OLD.id;
+
+
+
+    set pur=(select outcome from user where id = OLD.id);
+
+    if(pur is null)then
+        update user
+        set outcome=(select sum(cost) from tur where tur.id=OLD.id)
+        where id = OLD.id;
+    end if;
+
+    set rez=(select (income-outcome) from user  where id =OLD.id);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = OLD.id;
+    else
+        update user
+        set status='available'
+        where id = OLD.id;
+    end if;
+
+end;
+
 
 CREATE TRIGGER
     user_outcome2
@@ -467,11 +669,156 @@ CREATE TRIGGER
         tur
     FOR EACH ROW
 begin
-
+    declare pur int;
+    declare rez long;
     update user
-    set outcome=(select sum(cost) from tur where tur.id = user.id)
+    set outcome=user.outcome+(select cost from tur where tur.idtur = NEW.idtur)
     where id = NEW.id;
+
+    set pur=(select outcome from user where id = NEW.id);
+
+    if(pur is null)then
+        update user
+        set outcome=(select sum(cost) from purchase where purchase.id=NEW.id)
+        where id = NEW.id;
+    end if;
+
+    set rez=(select (income-outcome) from user  where id =NEW.id);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = NEW.id;
+    else
+        update user
+        set status='available'
+        where id = NEW.id;
+    end if;
+
+end;
+
+
+CREATE TRIGGER
+    user_outcome22
+    AFTER update
+    ON
+        tur
+    FOR EACH ROW
+begin
+    declare pur int;
+    declare rez long;
+    update user
+    set outcome=user.outcome+(select cost from tur where tur.idtur = NEW.idtur)
+    where id = NEW.id;
+
+    set pur=(select outcome from user where id = NEW.id);
+
+    if(pur is null)then
+        update user
+        set outcome=(select sum(cost) from purchase where purchase.id=NEW.id)
+        where id = NEW.id;
+    end if;
+
+    set rez=(select (income-outcome) from user  where id =NEW.id);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = NEW.id;
+    else
+        update user
+        set status='available'
+        where id = NEW.id;
+    end if;
+
+end;
+
+CREATE TRIGGER
+    user_outcome222
+    AFTER DELETE
+    ON
+        tur
+    FOR EACH ROW
+begin
+    declare pur int;
+    declare rez long;
+    update user
+    set outcome=user.outcome-(select cost from tur where tur.idtur = OLD.idtur)
+    where id = OLD.id;
+
+    set pur=(select outcome from user where id = OLD.id);
+
+    if(pur is null)then
+        update user
+        set outcome=(select sum(cost) from purchase where purchase.id=OLD.id)
+        where id = OLD.id;
+    end if;
+
+    set rez=(select (income-outcome) from user  where id =OLD.id);
+    if (rez< 0 ) then
+        update user
+        set status='unavailable'
+        where id = OLD.id;
+    else
+        update user
+        set status='available'
+        where id = OLD.id;
+    end if;
 
 end;
 $$
 DELIMITER ;
+
+
+select *
+from user;
+
+select *
+from purchase;
+
+
+select *
+from souvenirs;
+
+select *
+from tur;
+
+select price
+from souvenirs
+         inner join purchase p on souvenirs.idsuv = p.idsouvam;
+
+select souvenirsamount.amount
+from souvenirsamount
+         inner join souvenirs s on souvenirsamount.idsuv = s.idsuv;
+
+insert into purchase(id, idsouvam, date, qty) VALUE (1, 1, '2008-10-11', 20);
+
+
+insert into tur (id, date, qty, idturtype, cost) VALUE (1,'2008-12-10',211,1,10);
+
+select sum(price)
+from souvenirs
+         inner join purchase p on souvenirs.idsuv = p.idsouvam;
+
+
+
+select sum(p.qty),sum(p.cost),souvenirs.name
+from souvenirs inner join purchase p on souvenirs.idsuv = p.idsouvam
+inner join user on p.id = user.id
+where user.id=1 and idsuv=1
+group by idsouvam
+;
+
+select sum(p.qty),sum(p.cost),turtype.nametur
+from turtype inner join tur p on turtype.idturtype = p.idturtype
+               inner join user on p.id = user.id
+where user.id=1
+group by idtur
+;
+
+
+delete from purchase where idsouvam=1 and id=1;
+
+delete from tur where id=1 and idtur=1;
+
+select sum(income) from user  where id = 1;
+
+select sum(income-outcome) from user  where id =1;
