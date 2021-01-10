@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="border">
     <button class="btn btn-md btn-outline-primary" (click)="open(content)">
@@ -13,9 +12,9 @@
 
         <th>Isuvam</th>
 
-     <th> Date</th>
-     <th> QTY</th>
-     <th>Cost</th>
+        <th> Date</th>
+        <th> QTY</th>
+        <th>Cost</th>
 
 
         <th></th>
@@ -30,14 +29,14 @@
         <td><span>{{exe.date}}</span></td>
         <td><span>{{exe.qty}}</span></td>
 
-    <td><span>{{exe.cost}}</span></td>
+        <td><span>{{exe.cost}}</span></td>
         <td>
           <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, exe)">
             <i class="fa fa-search"></i>Details</button>
           <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, exe)">
             <i class="fa fa-edit"></i>Edit</button>
           <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, exe)">
-            <i class="fa fa-remove" ></i>Delete</button>
+            <i class="fa fa-remove"></i>Delete</button>
         </td>
       </tr>
     </tbody>
@@ -57,18 +56,20 @@
       <div class="form-group">
         <label for="idmus">IdUser</label>
         <div class="input-group">
-          <select [(ngModel)]="selected3" name="id" placeholder="select" >
-            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}</option>
-        </select>
+          <select [(ngModel)]="selected3" name="id" placeholder="select">
+            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}
+            </option>
+          </select>
         </div>
       </div>
 
-    <div class="form-group">
+      <div class="form-group">
         <label for="idmus">Idsuv</label>
         <div class="input-group">
-          <select [(ngModel)]="selected4" name="idsouvam" placeholder="select" >
-            <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idsuv">{{statype.idsuv}} {{statype.name}}</option>
-        </select>
+          <select [(ngModel)]="selected4" name="idsouvam" placeholder="select">
+            <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idsuv">{{statype.idsuv}} {{statype.name}}
+            </option>
+          </select>
         </div>
       </div>
 
@@ -125,7 +126,7 @@
         </div>
       </div>
 
-    <div class="form-group">
+      <div class="form-group">
         <label for="idmus">Idsouvam</label>
         <div class="input-group">
           <input id="idsouvam" name="date" type="text" class="form-control" disabled>
@@ -165,21 +166,23 @@
   <div class="modal-body">
     <form #f="ngForm" (ngSubmit)="onEdit(f)" enctype="multipart/form-data" novalidate>
 
-     <div class="form-group">
+      <div class="form-group">
         <label for="idmus">IdUser</label>
         <div class="input-group">
-          <select [(ngModel)]="selected3" name="id" placeholder="select" >
-            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}</option>
-        </select>
+          <select [(ngModel)]="selected3" name="id" placeholder="select">
+            <option *ngFor="let stauser of exeSeluser" [ngValue]="stauser.id">{{stauser.id}} {{stauser.username}}
+            </option>
+          </select>
         </div>
       </div>
 
-    <div class="form-group">
+      <div class="form-group">
         <label for="idmus">Idsuv</label>
         <div class="input-group">
-          <select [(ngModel)]="selected4" name="idsouvam" placeholder="select" >
-            <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idsuv">{{statype.idsuv}} {{statype.name}}</option>
-        </select>
+          <select [(ngModel)]="selected4" name="idsouvam" placeholder="select">
+            <option *ngFor="let statype of exeSeltype" [ngValue]="statype.idsuv">{{statype.idsuv}} {{statype.name}}
+            </option>
+          </select>
         </div>
       </div>
 

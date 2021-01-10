@@ -1,5 +1,5 @@
-
-
+<app-navbar></app-navbar>
+<app-menu></app-menu>
 
 <section class="profile_container">
   <div class="profile_img_section">
@@ -48,7 +48,9 @@
 
 <div class="container">
   <div class="container">
+    <div class="border">
 
+    </div>
 
   </div>
 
@@ -236,236 +238,237 @@
     </div>
   </ng-template>
 <!-- dsghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh -->
-  <ng-template #contentEdit let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">exe Edit</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form #f="ngForm" (ngSubmit)="onEdit(f)" name="form" enctype="multipart/form-data" novalidate>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <div class="input-group">
-            <input type="text" class="form-control" name="username" required minlength="3"
-              maxlength="20" id="username1" ngModel />
-          </div>
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">exe Edit</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onEdit(f)" name="form" enctype="multipart/form-data" novalidate>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="username" required minlength="3"
+            maxlength="20" id="username1" ngModel />
         </div>
-
-        <div class="form-group">
-          <label for="lat">Name</label>
-          <div class="input-group">
-            <input type="text" class="form-control" name="name" required
-             ngModel id="name1"/>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="lat">Image</label>
-          <div class="input-group">
-            <input type="file" class="form-control" name="image"
-            accept="image/*"
-            (change)="onFileSelected($event)" ngModel>
-          </div>
-        </div>
-
-
-
-        <div class="form-group">
-          <label for="lat">Email</label>
-          <div class="input-group">
-            <input type="email" class="form-control" name="email" required email
-             ngModel id="email1" />
-          </div>
-        </div>
-
-
-
-
-          <div class="border text-center">
-          <button data-dismiss="modal" class="btn btn-info">Submit</button>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
-    </div>
-  </ng-template>
-
-
-  <ng-template #contentDelete let-modal>
-    <div class="modal-header">
-
-
-      <h4 class="modal-title">Confirm Delete</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <h2>Are you sure you want to delete this record.</h2>
-      <div class="border text-center">
-        <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
       </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
-    </div>
 
-  </ng-template>
+      <div class="form-group">
+        <label for="lat">Name</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="name" required
+           ngModel id="name1"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lat">Image</label>
+        <div class="input-group">
+          <input type="file" class="form-control" name="image"
+          accept="image/*"
+          (change)="onFileSelected($event)" ngModel>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="lat">Email</label>
+        <div class="input-group">
+          <input type="email" class="form-control" name="email" required email
+           ngModel id="email1" />
+        </div>
+      </div>
+
+
+
+
+        <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+
+
+    <h4 class="modal-title">Confirm Delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h2>Are you sure you want to delete this record.</h2>
+    <div class="border text-center">
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+
+</ng-template>
 </div>
 
 
 
 <div class="container">
-  <hr class="style-one wow fadeInLeft" id="western">
-  <h2 class="text-center wow fadeIn">Purchases</h2>
-  <hr class="style-one wow fadeInRight">
+<hr class="style-one wow fadeInLeft" id="western">
+<h2 class="text-center wow fadeIn">Purchases</h2>
+<hr class="style-one wow fadeInRight">
 
 
 </div>
 
 <div class="container">
 <table>
-  <thead>
-    <th>Name Souvenir </th>
+<thead>
+  <th>Name Souvenir </th>
 <th>QTY Souvenirs</th>
 <th>COST Souvenirs</th>
 
-  </thead>
-  <tbody>
-    <tr *ngFor="let exe of exast">
-      <td><span>{{exe.name}}</span></td>
-      <td><span>{{exe.sum}}</span></td>
+</thead>
+<tbody>
+  <tr *ngFor="let exe of exast">
+    <td><span>{{exe.name}}</span></td>
+    <td><span>{{exe.sum}}</span></td>
 
-     <td><span>{{exe.sum2}}</span></td>
-     </tr>
+   <td><span>{{exe.sum2}}</span></td>
+   </tr>
 
-  </tbody>
+</tbody>
 <th></th>
-  <thead>
-    <th>Name Tour </th>
+<thead>
+  <th>Name Tour </th>
 <th>QTY Tours</th>
 <th>COST Tours</th>
 
-  </thead>
-  <tbody>
-    <tr *ngFor="let exe of exasdt">
-      <td><span>{{exe.name}}</span></td>
-      <td><span>{{exe.sum}}</span></td>
+</thead>
+<tbody>
+  <tr *ngFor="let exe of exasdt">
+    <td><span>{{exe.name}}</span></td>
+    <td><span>{{exe.sum}}</span></td>
 
-     <td><span>{{exe.sum2}}</span></td>
-     </tr>
+   <td><span>{{exe.sum2}}</span></td>
+   </tr>
 
-  </tbody>
+</tbody>
 </table>
 </div>
 
 <div class="container">
-  <hr class="style-one wow fadeInLeft" id="western">
-  <h2 class="text-center wow fadeIn">Souvenirs</h2>
-  <hr class="style-one wow fadeInRight">
+<hr class="style-one wow fadeInLeft" id="western">
+<h2 class="text-center wow fadeIn">Souvenirs</h2>
+<hr class="style-one wow fadeInRight">
 
 
 </div>
 
 <div class="container">
-  <div class="card-columns">
+<div class="card-columns">
 
-    <div class="card view overlay zoom" data-backdrop="false" *ngFor="let exe of exesf" id="assumption-show" data-toggle="modal"
-      [attr.data-target]="'#modal' + exe.idsuv" >
-      <img class="card-img-top wow fadeInUp" src="{{exe.image}}" alt="Card image cap">
-      <div class="card-img-overlay" id="assumption">
+  <div class="card view overlay zoom" data-backdrop="false" *ngFor="let exe of exesf" id="assumption-show" data-toggle="modal"
+    [attr.data-target]="'#modal' + exe.idsuv" >
+    <img class="card-img-top wow fadeInUp" src="{{exe.image}}" alt="Card image cap">
+    <div class="card-img-overlay" id="assumption">
 
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 
 <div class="modal fade" *ngFor="let exe of exesf" [attr.id]="'modal' + exe.idsuv" tabindex="-1" role="dialog"
-  aria-labelledby="modal1label" aria-hidden="true"  >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal1label">{{exe.name}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+aria-labelledby="modal1label" aria-hidden="true"  >
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal1label">{{exe.name}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
 
 
-        <p class="card-text">Price:{{exe.price}}</p>
+      <p class="card-text">Price:{{exe.price}}</p>
 
-        <p>Status:{{exe.status}}</p>
-
-
-        <img class="profile_img-LG" src="{{exe.image}}" />
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-warning" (click)="delSouv(exe.idsuv)" data-dismiss="modal">Delete</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <p>Status:{{exe.status}}</p>
 
 
-      </div>
+      <img class="profile_img-LG" src="{{exe.image}}" />
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-warning" (click)="delSouv(exe.idsuv)" data-dismiss="modal">Delete</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
     </div>
   </div>
+</div>
 </div>
 
 
 <div class="container">
-  <hr class="style-one  fadeInLeft" >
-  <h2 class="text-center  fadeIn">Tours</h2>
-  <hr class="style-one  fadeInRight">
+<hr class="style-one  fadeInLeft" >
+<h2 class="text-center  fadeIn">Tours</h2>
+<hr class="style-one  fadeInRight">
 
 
 </div>
 <div class="container">
 
-  <div class="card-columns">
+<div class="card-columns">
 
-    <div class="card view overlay zoom" data-backdrop="false" *ngFor="let exe of exest" id="assumption-show" data-toggle="modal"
-      [attr.data-target]="'#modalt' + exe.idturtype">
-      <img class="card-img-top wow fadeInUp" src="./images/renaissance/paintings/primavera/primavera.jpg" alt="Card image cap">
-      <div class="card-img-overlay" id="assumption">
+  <div class="card view overlay zoom" data-backdrop="false" *ngFor="let exe of exest" id="assumption-show" data-toggle="modal"
+    [attr.data-target]="'#modalt' + exe.idturtype">
+    <img class="card-img-top wow fadeInUp" src="./images/renaissance/paintings/primavera/primavera.jpg" alt="Card image cap">
+    <div class="card-img-overlay" id="assumption">
 
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 
 <div class="modal fade" *ngFor="let exe of exest" [attr.id]="'modalt' + exe.idturtype" tabindex="-1" role="dialog"
-  aria-labelledby="modal1label" aria-hidden="true" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal1label">{{exe.nametur}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+aria-labelledby="modal1label" aria-hidden="true" >
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal1label">{{exe.nametur}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
 
 
-        <p class="card-text">Price:{{exe.price}}</p>
+      <p class="card-text">Price:{{exe.price}}</p>
 
-        <p>{{exe.description}}</p>
+      <p>{{exe.description}}</p>
 
 
 
-      </div>
-      <div class="modal-footer">
-         <button type="button" (click)="delTour(exe.idturtype)" class="btn btn-warning" data-dismiss="modal">Delete</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+    <div class="modal-footer">
+       <button type="button" (click)="delTour(exe.idturtype)" class="btn btn-warning" data-dismiss="modal">Delete</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-      </div>
     </div>
   </div>
+</div>
 
 
 
 </div>
+<app-footer></app-footer>

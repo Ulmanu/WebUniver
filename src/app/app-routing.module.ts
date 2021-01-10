@@ -28,6 +28,7 @@ import { SouvenirsComponent } from './modules/souvenirs/souvenirs.component';
 import { SouvenirsamountComponent } from './modules/souvenirsamount/souvenirsamount.component';
 import { MuseumComponent } from './products/museum/museum.component';
 import { SectionComponent } from './products/section/section.component';
+import { UserComponent } from './products/user/user.component';
 const routes: Routes = [
   { path: '', component: GaleryComponent },
   { path: 'renmuseum', component: RenmuseumComponent },
@@ -87,6 +88,7 @@ const routes: Routes = [
       }
 
 
+
     ]
   },
   { path: 'musform', component: MusformComponent },
@@ -102,6 +104,10 @@ const routes: Routes = [
   {
     path: 'gal/:id', component: GalleryComponent
   },
+  {
+    path: 'profile',
+    component: UserComponent
+  }
 ];
 
 @NgModule({

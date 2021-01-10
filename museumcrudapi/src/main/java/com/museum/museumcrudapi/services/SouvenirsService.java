@@ -15,8 +15,11 @@ public class SouvenirsService {
   private SouveniramountRepository rep;
 
   public Souvenirs saveSouvenirs(Souvenirs souvenirs) {
-    ;
-    return repository.save(souvenirs);
+        souvenirs.setStatus("available");
+      return repository.save(souvenirs);
+
+
+
   }
 
   public List<Souvenirs> saveSouvenirss(List<Souvenirs> souvenirss) {

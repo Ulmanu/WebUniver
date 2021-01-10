@@ -19,10 +19,17 @@ public class PurchaseService {
 
 
   public Purchase savePurchase(Purchase purchase, Integer id, Integer idsouv) {
-    purchase.setId(id);
-    purchase.setIdsouvam(idsouv);
-    purchase.setCost(serv.getSouvenirssById(idsouv).getPrice()*purchase.getQty());
-    return repository.save(purchase);
+    if (serv.getSouvenirssById(idsouv).getStatus().equalsIgnoreCase("unavailable")) {
+      return null;
+
+    } else {
+      purchase.setId(id);
+      purchase.setIdsouvam(idsouv);
+      purchase.setCost(serv.getSouvenirssById(idsouv).getPrice() * purchase.getQty());
+
+      return repository.save(purchase);
+    }
+
   }
 
   public List<Purchase> savePurchases(List<Purchase> purchases) {

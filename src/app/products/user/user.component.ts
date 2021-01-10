@@ -1,16 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DashboardService } from '../dashboard.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { TokenStorageService } from '../../_services/token-storage.service';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 // import {Component, OnInit} from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
-import { UploadService } from '../../modules/upload.service';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgForm} from '@angular/forms';
+import {UploadService} from '../../modules/upload.service';
 // import { AuthService } from 'src/app/_services/auth.service';
 
 export class Object {
@@ -21,49 +17,34 @@ export class Object {
 
 
   constructor(
-    public id: number,
-    public title: string,
-    public address: string,
-    public description: string,
-    public image: string,
-    public lat: number,
-    public lon: number,
-    public idsect: number,
-    public idmus: number,
-    public type: string,
-    public idgal: number,
-    public idexp: number,
-    public price: number,
-    public username: string,
-    public name: string,
-    public email: string,
-    public password: string,
-    public role: string
+   public id: number,
+   public title: string,
+   public address: string,
+   public description: string,
+   public image: string,
+   public lat: number,
+   public lon: number,
+   public idsect:number,
+   public idmus:number,
+   public type:string,
+   public idgal:number,
+   public idexp:number,
+   public price:number,
+   public username:string,
+   public name:string,
+   public email:string,
+   public password:string,
+   public role:string
 
   ) {
   }
 }
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
-
-export class DashboardComponent implements OnInit {
-
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
-  constructor(private dashboardService: DashboardService,
-    private httpClient: HttpClient,
-    private authService: AuthService,
-    private tokenStorage: TokenStorageService,
-    private router: Router,
-
-    private modalService: NgbModal,
-    private uploadFileService: UploadService,
-  ) {
-  }
+export class UserComponent implements OnInit {
 
   ObjectFile: File;
   form: any = {};
@@ -73,7 +54,15 @@ export class DashboardComponent implements OnInit {
   closeResult: string;
   exeSel: any;
   exesp: any;
+  constructor(
 
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private httpClient: HttpClient,
+    private modalService: NgbModal,
+    private uploadFileService: UploadService,
+  ) { }
 
   ngOnInit(): void {
     this.getObjects();
@@ -85,7 +74,7 @@ export class DashboardComponent implements OnInit {
   }
   exes: Object[];
   getObjects() {
-    this.httpClient.get<any>('http://localhost:9191/users/' + this.tokenStorage.getUser().id).subscribe(
+    this.httpClient.get<any>('http://localhost:9191/users/'+this.tokenStorage.getUser().id).subscribe(
       response => {
         console.log(response);
         this.exes = response;
@@ -99,7 +88,7 @@ export class DashboardComponent implements OnInit {
 
 
   open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -116,7 +105,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  nameImage: string;
+  nameImage:string;
   onFileSelected1(event) {
     this.ObjectFile = event.target.files[0];
     this.nameImage = this.ObjectFile.name;
@@ -131,10 +120,10 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit() {
-    this.form.image = 'images/museums/' + this.ObjectFile.name;
-    console.log(this.form);
+this.form.image='images/museums/' + this.ObjectFile.name;
+console.log(this.form);
 
-    this.uploadFileService.uploadFiles(this.ObjectFile);
+this.uploadFileService.uploadFiles(this.ObjectFile);
     this.authService.registeruser(this.form).subscribe(
       data => {
         console.log(data);
@@ -195,11 +184,11 @@ export class DashboardComponent implements OnInit {
       id: this.tokenStorage.getUser().id,
       username: f.value.username,
       name: f.value.name,
-      image: "images/museums/" + this.ObjectFile.name,
-      password: this.temp.password,
+      image:"images/museums/"+this.ObjectFile.name,
+      password:this.temp.password,
 
       email: f.value.email,
-      role: "ROLE_ADMIN"
+      role: "ROLE_USER"
     };
     console.log(body);
 
@@ -237,7 +226,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getObjectsp() {
-    this.httpClient.get<any>('http://localhost:9191/getjoinmus6/' + this.tokenStorage.getUser().id).subscribe(
+    this.httpClient.get<any>('http://localhost:9191/getjoinmus6/'+this.tokenStorage.getUser().id).subscribe(
       response => {
         console.log(response);
         this.exesp = response;
@@ -255,7 +244,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openp(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -288,7 +277,7 @@ export class DashboardComponent implements OnInit {
 
   onSubmitp(f: NgForm) {
 
-    const url = 'http://localhost:9191/addpayment/' + this.tokenStorage.getUser().id;
+    const url = 'http://localhost:9191/addpayment/'+this.tokenStorage.getUser().id;
     var headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -296,7 +285,7 @@ export class DashboardComponent implements OnInit {
 
     const body = {
       cardnumber: f.value.cardnumber, amount: f.value.amount,
-      idgal: this.tokenStorage.getUser().id
+     idgal:this.tokenStorage.getUser().id
     };
     console.log(body);
     this.uploadFileService.uploadFiles(this.ObjectFile);
@@ -337,12 +326,12 @@ export class DashboardComponent implements OnInit {
     this.tempp = Object;
     document.getElementById('cardnumber1').setAttribute('placeholder', Object.cardnumber);
 
-    console.log(this.tempp.idpay);
+      console.log(this.tempp.idpay);
     document.getElementById('amount1').setAttribute('placeholder', Object.amount);
 
     // document.getElementById('type').setAttribute('value', Object.type);
     // document.getElementById('idmus').setAttribute('value', Object.idmus.toString());
-    console.log(this.temp);
+console.log(this.temp);
   }
 
   onEditp(f: NgForm) {
@@ -357,9 +346,9 @@ export class DashboardComponent implements OnInit {
 
     const body = {
       idpay: this.tempp.idpay,
-      cardnumber: f.value.cardnumber,
-      amount: f.value.amount,
-      iduser: this.tokenStorage.getUser().id
+      cardnumber:f.value.cardnumber,
+      amount:f.value.amount,
+      iduser:this.tokenStorage.getUser().id
 
     };
     console.log(body);
@@ -397,9 +386,10 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  exesf: any;
-  selSouv() {
-    this.httpClient.get<any>('http://localhost:9191/getjoinmus7/' + this.tokenStorage.getUser().id).subscribe(
+  exesf:any;
+  selSouv()
+  {
+    this.httpClient.get<any>('http://localhost:9191/getjoinmus7/'+this.tokenStorage.getUser().id).subscribe(
       response => {
         console.log(response);
         this.exesf = response;

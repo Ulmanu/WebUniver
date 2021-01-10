@@ -43,6 +43,8 @@ import { SouvenirsamountComponent } from './modules/souvenirsamount/souvenirsamo
 import { MuseumComponent } from './products/museum/museum.component';
 import { SectionComponent } from './products/section/section.component';
 import { GalleryComponent } from './products/gallery/gallery.component';
+import { UserComponent } from './products/user/user.component';
+import { SouvenirspanelComponent } from './products/souvenirspanel/souvenirspanel.component';
 //import { ExponatComponent } from './products/exponat/exponat.component';
 // import { GallerysComponent } from './modules/gallerys/gallerys.component';
 // import { ExponatsComponent } from './modules/exponats/exponats.component';
@@ -89,7 +91,9 @@ import { GalleryComponent } from './products/gallery/gallery.component';
     SouvenirsamountComponent,
     MuseumComponent,
     SectionComponent,
-    GalleryComponent
+    GalleryComponent,
+    UserComponent,
+    SouvenirspanelComponent
 
 
   ],

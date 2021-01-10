@@ -54,7 +54,8 @@ public class Souvenirs {
   private String name;
   private float price;
   private String image;
-
+  private String status;
+  private int qty;
   public int getQty() {
     return qty;
   }
@@ -63,7 +64,7 @@ public class Souvenirs {
     this.qty = qty;
   }
 
-  private int qty;
+
 
   public String getStatus() {
     return status;
@@ -73,6 +74,6 @@ public class Souvenirs {
     this.status = status;
   }
 
-  private String status;
+
 
 }
