@@ -120,6 +120,24 @@ public class MuseumController {
   public List<InfoDTO> getTourUser(@PathVariable int id) {
     return repository.getTourUser(id);
   }
+
+  @GetMapping("/getjoinmus22")
+  public List<MuseumDTO> getSectionJoin22() {
+    return repository.getSectionByIdmus22();
+
+  }
+
+  @GetMapping("/getjoinmus33")
+  public List<MuseumDTO> getSectionJoin33() {
+    return repository.getSectionByIdmus33();
+
+  }
+
+  @GetMapping("/getjoinmus44")
+  public List<MuseumDTO> getSectionJoin44() {
+    return repository.getSectionByIdmus44();
+
+  }
 //  @GetMapping("/getjoinmus1/{id}")
 //  public List<MuseumDTO> getSectionJoins(@PathVariable int idmus) {
 //    return repository.getSectionByIdmus1(idmus);

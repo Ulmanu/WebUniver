@@ -49,6 +49,15 @@ public interface MuseumRepository extends JpaRepository<Museum,Integer>{
 
   @Query("select new com.museum.museumcrudapi.dto.InfoDTO(sum(t.qty),sum(t.cost),s.nametur)  from Turtype s join Tur t on t.idturtype=s.idturtype join  User u on t.id = u.id where u.id=?1  group by s.idturtype")
   public List<InfoDTO> getTourUser(int id);
+
+  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumDTO(c.id,c.title,c.address,c.description,c.image,c.lat,c.lon) FROM Museum c JOIN Section p on c.id=p.idmus WHERE p.type='Baroque'")
+  public List<MuseumDTO> getSectionByIdmus22();
+
+  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumDTO(c.id,c.title,c.address,c.description,c.image,c.lat,c.lon) FROM Museum c JOIN Section p on c.id=p.idmus WHERE p.type='Contemporary'")
+  public List<MuseumDTO> getSectionByIdmus33();
+
+  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumDTO(c.id,c.title,c.address,c.description,c.image,c.lat,c.lon) FROM Museum c JOIN Section p on c.id=p.idmus WHERE p.type='History'")
+  public List<MuseumDTO> getSectionByIdmus44();
 //  @Query("SELECT new com.museum.museumcrudapi.dto.MuseumSectionJoinResponse(c.id,c.title) FROM Museum c JOIN c.sections p WHERE p.idmus=?1")
 //  public List<MuseumSectionJoinResponse> getSectionByIdmus(int idmus);
 //

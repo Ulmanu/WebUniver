@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<app-menu></app-menu>
+<div class="container">
+  <hr class="style-one wow fadeInLeft" id="western">
+  <h2 class="text-center wow fadeIn">WESTERN ART</h2>
+  <hr class="style-one wow fadeInRight">
+  <h3 class="text-center wow zoomInDown">Baroque</h3>
+  <p class="text-center">Baroque art emerged in Rome, the artistic capital of Europe in the 17th century and spread to
+    other European countries where it merged with local traditions and cultures. Baroque means irregularly-shaped
+    pearl, derived from barocco in Portuguese,
+    first used during the mid-1700s. Baroque art does not have any relation to pearls but the word was used as an
+    epithet for a style that did not meet the great artistic standards of the preceding Renaissance era. Regardless of
+    its origin, it
+    carried connotations of “bizarre” and “absurd” when used by its critics who dismissed it as a decadent successor
+    to the revered Renaissance movement. Till the end of the 19th century and occasionally in the present time, some
+    people use this
+    word in its original sense as an insult towards anything they find grotesque or abnormal. The Baroque Style also
+    resulted in some majestic landmarks in modern Europe architecture...<a href="https://www.identifythisart.com/art-movements-styles/pre-modern-art/baroque-art-movement/" target="_blank">read more</a>
+  </p>
+</div>
+
+<div class="container">
+  <div class="card-columns">
+
+    <div class="card view overlay zoom" *ngFor="let exe of exes" id="assumption-show" data-toggle="modal"
+      [attr.data-target]="'#modal' + exe.id">
+      <img class="card-img-top wow fadeInUp" src="{{exe.image}}" alt="Card image cap">
+      <div class="card-img-overlay" id="assumption">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" *ngFor="let exe of exes" [attr.id]="'modal' + exe.id" tabindex="-1" role="dialog"
+  aria-labelledby="modal1label" aria-hidden="true" (click)="click(exe.lat,exe.lon)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal1label">{{exe.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <p class="card-text">{{exe.address}}</p>
+
+        <p>{{exe.lat}} ,{{exe.lon}}</p>
+
+
+        <p>
+          <iframe width="450px" height="600px" frameBorder="0" [src]="urlSafe"></iframe>
+        </p>
+        <a href="/muz/{{exe.id}}">
+          <button type="button" id="details">
+
+            <span>
+              Details
+            </span>
+          </button>
+        </a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

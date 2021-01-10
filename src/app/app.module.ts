@@ -45,6 +45,10 @@ import { SectionComponent } from './products/section/section.component';
 import { GalleryComponent } from './products/gallery/gallery.component';
 import { UserComponent } from './products/user/user.component';
 import { SouvenirspanelComponent } from './products/souvenirspanel/souvenirspanel.component';
+import { BaroqueComponent } from './baroque/baroque.component';
+import { ContempComponent } from './contemp/contemp.component';
+import { HistoryComponent } from './history/history.component';
+import { SouvenirsallComponent } from './souvenirsall/souvenirsall.component';
 //import { ExponatComponent } from './products/exponat/exponat.component';
 // import { GallerysComponent } from './modules/gallerys/gallerys.component';
 // import { ExponatsComponent } from './modules/exponats/exponats.component';
@@ -93,7 +97,11 @@ import { SouvenirspanelComponent } from './products/souvenirspanel/souvenirspane
     SectionComponent,
     GalleryComponent,
     UserComponent,
-    SouvenirspanelComponent
+    SouvenirspanelComponent,
+    BaroqueComponent,
+    ContempComponent,
+    HistoryComponent,
+    SouvenirsallComponent
 
 
   ],

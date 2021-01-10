@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<app-menu></app-menu>
+<div class="container">
+  <hr class="style-one wow fadeInLeft" id="western">
+  <h2 class="text-center wow fadeIn">WESTERN ART</h2>
+  <hr class="style-one wow fadeInRight">
+  <h3 class="text-center wow zoomInDown">History</h3>
+  <p class="text-center">The depth and wealth of Southern’s art history is immense and unique. A significant collection
+    of art is archived in public and private institutions. ​ Sadly, the Southern public does not get to access these
+    collections and the stories that define
+    their history; stories of how humans have used creative expression to record their rich cultural heritage and
+    inform their posterity. ​ In this series we shall attempt to showcase the various art collections by The Late
+    Joseph Zuzarte Murumbi,
+    Kenya’s second Vice-President and art collector, and is known to have pushed for a national art gallery of Kenya,
+    a dream he never saw come alive by the time of his death in 1990..
+  </p>
+</div>
+
+<div class="container">
+  <div class="card-columns">
+
+    <div class="card view overlay zoom" *ngFor="let exe of exes" id="assumption-show" data-toggle="modal"
+      [attr.data-target]="'#modal' + exe.id">
+      <img class="card-img-top wow fadeInUp" src="{{exe.image}}" alt="Card image cap">
+      <div class="card-img-overlay" id="assumption">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" *ngFor="let exe of exes" [attr.id]="'modal' + exe.id" tabindex="-1" role="dialog"
+  aria-labelledby="modal1label" aria-hidden="true" (click)="click(exe.lat,exe.lon)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal1label">{{exe.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <p class="card-text">{{exe.address}}</p>
+
+        <p>{{exe.lat}} ,{{exe.lon}}</p>
+
+
+        <p>
+          <iframe width="450px" height="600px" frameBorder="0" [src]="urlSafe"></iframe>
+        </p>
+        <a href="/muz/{{exe.id}}">
+          <button type="button" id="details">
+
+            <span>
+              Details
+            </span>
+          </button>
+        </a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

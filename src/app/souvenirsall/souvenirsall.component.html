@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+<app-menu></app-menu>
+<div class="container">
+  <hr class="style-one wow fadeInLeft" id="western">
+  <h2 class="text-center wow fadeIn">Souvenirs</h2>
+  <hr class="style-one wow fadeInRight">
+  <h3 class="text-center wow zoomInDown">Purchase Souvenirs</h3>
+  <p class="text-center">
+    Souvenir (from French, meaning "a remembrance or memory"), memento, keepsake, or token of remembrance[1] is an
+    object a person acquires for the memories the owner associates with it. A souvenir can be any object that can be
+    collected or purchased and transported home by the traveler as a memento of a visit. While there is no set minimum
+    or maximum cost that one is required to adhere to when purchasing a souvenir, etiquette would suggest to keep it
+    within a monetary amount that the receiver would not feel uncomfortable with when presented the souvenir. The object
+    itself may have intrinsic value, or be a symbol of experience. Without the owner's input, the symbolic meaning is
+    invisible and cannot be articulated
+  </p>
+</div>
+
+<div class="container">
+  <div class="card-columns">
+
+    <div class="card view overlay zoom" *ngFor="let exe of exes" id="assumption-show" data-toggle="modal"
+      [attr.data-target]="'#modal' + exe.idsuv">
+      <img class="card-img-top wow fadeInUp" src="{{exe.image}}" alt="Card image cap">
+      <div class="card-img-overlay" id="assumption">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" *ngFor="let exe of exes" [attr.id]="'modal' + exe.idsuv" tabindex="-1" role="dialog"
+  aria-labelledby="modal1label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal1label">{{exe.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <p class="card-text">Status:{{exe.status}}</p>
+
+        <p>Price:{{exe.price}}</p>
+        <p>Qty:{{exe.qty}}</p>
+
+
+        <a href="/muz/{{exe.id}}">
+          <button type="button" id="details">
+
+            <span>
+              Details
+            </span>
+          </button>
+        </a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

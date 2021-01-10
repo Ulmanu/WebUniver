@@ -29,6 +29,10 @@ import { SouvenirsamountComponent } from './modules/souvenirsamount/souvenirsamo
 import { MuseumComponent } from './products/museum/museum.component';
 import { SectionComponent } from './products/section/section.component';
 import { UserComponent } from './products/user/user.component';
+import { BaroqueComponent } from './baroque/baroque.component';
+import { ContempComponent } from './contemp/contemp.component';
+import { HistoryComponent } from './history/history.component';
+import { SouvenirsallComponent } from './souvenirsall/souvenirsall.component';
 const routes: Routes = [
   { path: '', component: GaleryComponent },
   { path: 'renmuseum', component: RenmuseumComponent },
@@ -107,7 +111,25 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserComponent
-  }
+  },
+  {
+    path: 'baroque',
+    component: BaroqueComponent
+  },
+  {
+    path: 'contemp',
+    component: ContempComponent
+  },
+  {
+    path: 'history',
+    component: HistoryComponent
+  },
+  {
+    path: 'suzi',
+    component: SouvenirsallComponent
+  },
+
+
 ];
 
 @NgModule({
