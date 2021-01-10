@@ -648,6 +648,14 @@ begin
         where id = OLD.id;
     end if;
 
+    set pur=(select outcome from user where id = OLD.id);
+
+    if(pur is null)then
+        update user
+        set outcome=0
+        where id = OLD.id;
+    end if;
+
     set rez=(select (income-outcome) from user  where id =OLD.id);
     if (rez< 0 ) then
         update user
@@ -749,6 +757,13 @@ begin
     if(pur is null)then
         update user
         set outcome=(select sum(cost) from purchase where purchase.id=OLD.id)
+        where id = OLD.id;
+    end if;
+
+    set pur=(select outcome from user where id = OLD.id);
+    if(pur is null)then
+        update user
+        set outcome=0
         where id = OLD.id;
     end if;
 
